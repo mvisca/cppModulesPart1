@@ -64,8 +64,7 @@ int	main(void) {
 		}
 
 		for (int i = 0; i < phoneBook.getContactsCount(); i++) {
-			std::cout << "Nombre: " << phoneBook.getIndexContacts(i).getFirstName();
-
+			std::cout << "Nombre: " << phoneBook.getIndexContacts(i).getFirstName(); 
 		}
 	}	
 	return (0);

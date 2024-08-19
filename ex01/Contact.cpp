@@ -31,7 +31,7 @@ Contact::Contact(
 // Default Destructoer
 Contact::~Contact() { 
 
-	std::cout << "Contact destroyed" << std::endl;
+	std::cout << "\nContact destroyed" << std::endl;
 
 }
 

@@ -22,18 +22,18 @@ std::string	displayMenuGetValue(bool isEsp) {
 
 	if (isEsp) {
 		std::cout << "Qué quieres hacer?\n";
-		std::cout << "   [EXIT]\tpara Salir\n";
 		std::cout << "   [ADD]\tpara Agregar Contacto\n";
 		std::cout << "   [SEARCH]\tpara Buscar Contacto\n";
-		std::cout << "   [ENG]\tpara cambiar menú a Inglés\n";
+		std::cout << "   [ENG]\tpara Cambiar a Inglés\n";
+		std::cout << "   [EXIT]\tpara Salir\n";
 		std::cout << std::endl;
 		std::cout << "Elige una opción: ";
 	} else {
 		std::cout << "What do you want to do?\n";
-		std::cout << "   [EXIT]\tto Exit\n";
 		std::cout << "   [ADD]\tto Add Contact\n";
 		std::cout << "   [SEARCH]\tto Search Contact\n";
-		std::cout << "   [ESP]\tto switch menu to English\n";
+		std::cout << "   [ESP]\tto Switch to English\n";
+		std::cout << "   [EXIT]\tto Exit\n";
 		std::cout << std::endl;
 		std::cout << "Choose an option: ";
 	}
@@ -52,7 +52,10 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter first name: " << std::endl;
 	}
-	std::getline(std::cin, firstName);
+	if (!std::getline(std::cin, firstName)) {
+		std::cout << "Error! Input set to 'Default'\n";
+		firstName = "Default";
+	}
 	
 	std::string lastName;
 	if (isEsp) {
@@ -60,7 +63,10 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter last name: " << std::endl;
 	}
-	std::getline(std::cin, lastName);
+	if (!std::getline(std::cin, lastName)) {
+		std::cout << "Error! Input set to 'Default'\n";
+		lastName = "Default";
+	}
 
 	std::string nickname;
 	if (isEsp) {
@@ -68,7 +74,10 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter nickname: " << std::endl;
 	}
-	std::getline(std::cin, nickname);
+	if (!std::getline(std::cin, nickname)) {
+		std::cout << "Error! Input set to 'Default'\n";
+		nickname = "Default";
+	}
 	
 	std::string phoneNumber;
 	if (isEsp) {
@@ -76,7 +85,10 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter phone numbrer: " << std::endl;
 	}
-	std::getline(std::cin, phoneNumber);
+	if (!std::getline(std::cin, phoneNumber)) {
+		std::cout << "Error! Input set to 'Default'\n";
+		nickname = "Default";
+	}
 	
 	std::string darkestSecret;
 	if (isEsp) {
@@ -84,7 +96,10 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter darkest secret: " << std::endl;
 	}
-	std::getline(std::cin, darkestSecret);
+	if (!std::getline(std::cin, darkestSecret)) {
+		std::cout << "Error! Input set to 'Default'\n";
+		darkestSecret = "Default";
+	}
 
 	phoneBook.addContact(
 		firstName,
