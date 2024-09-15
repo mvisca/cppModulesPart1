@@ -42,7 +42,6 @@ int	main(void) {
 			const int optionIndex = getIndexValue(phoneBook, isEsp);
 			const Contact contact = phoneBook.getIndexContacts(optionIndex);
 			printContact(contact, isEsp);
-//			std::this_thread::sleep_for(std::chrono::seconds(1));
 
 		} else if (option == "ENG" && isEsp) {
 			isEsp = false;

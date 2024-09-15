@@ -172,6 +172,10 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 	else {
 	    std::cout << "Press [Enter] to continue...";
 	}
+
+    std::cin.ignore();
+    std::cin.get();
+
 }
 
 const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
