@@ -13,7 +13,7 @@ TARGET		:=	phoneBook.out
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
+$(TARGET): $(OBJS) Makefile
 	$(COMP) $(FLAGS) -o $(TARGET) $(OBJS)
 
 %.o: %.cpp Contact.hpp PhoneBook.hpp GlobalHeaders.hpp
