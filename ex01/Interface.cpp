@@ -171,14 +171,14 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 	std::cout << contact.getDarkestSecret() << std::endl;
 
 	if (isEsp) {
-	    std::cout << "Presiona [Enter] para continuar...";
+		std::cout << "Presiona [Enter] para continuar...";
 	}
 	else {
-	    std::cout << "Press [Enter] to continue...";
+		std::cout << "Press [Enter] to continue...";
 	}
 
-    std::cin.ignore();
-    std::cin.get();
+//	std::cin.ignore();
+//	std::cin.get();
 
 }
 
@@ -186,7 +186,6 @@ const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 
 	int	option;
 
-	std::cout << "count " << phoneBook.getContactsCount() << std::endl;
 	while (true) {
 
 		if (isEsp) {
@@ -198,13 +197,12 @@ const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 
 		char character;
 		std::cin >> character;
-
-		option = character;
-		if (!std::isdigit(character))
-			option = (character - '0') - 1;
+		option = (character - '0') - 1;
 				
-		if (option >= 0 && option < phoneBook.getContactsCount())
+		if (std::isdigit(character) && (option >= 0 && option < phoneBook.getContactsCount()))
 			break ;
+		
+		std::cout << std::endl;
 	}
 	return option;
 }
