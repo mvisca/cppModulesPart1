@@ -184,22 +184,27 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 
 const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 
-
-
 	int	option;
-	char character;
 
-	while (1) {
+	std::cout << "count " << phoneBook.getContactsCount() << std::endl;
+	while (true) {
+
 		if (isEsp) {
-		std::cout << "Elija un índice: ";
+			std::cout << "Elija un índice: ";
 		}
 		else {
 			std::cout << "Chose an index: ";
 		}
+
+		char character;
 		std::cin >> character;
-		option = character - '0';
-		if (std::isdigit(character) && (option > 1 || option < phoneBook.getContactsCount()))
+
+		option = character;
+		if (!std::isdigit(character))
+			option = (character - '0') - 1;
+				
+		if (option >= 0 && option < phoneBook.getContactsCount())
 			break ;
 	}
-	return option -1;
+	return option;
 }
