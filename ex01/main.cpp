@@ -12,27 +12,37 @@ int	main(void) {
 
 	for (bool execution = true; execution;) {
 
-		option = displayMenuGetValue(isEsp);
-		option = toUppercase(option);
+		option = toUppercase(displayMenuGetValue(isEsp));
 
+		// EXIT
 		if (option == "EXIT") {
+
 			if (isEsp)
 				std::cout << "Saliendo de PhoneBook!\n";
 			else
 				std::cout << "Leaving PhoneBook!\n";
 			execution = false;
+		}
 
-		} else if (option == "ADD") {
+		// ADD
+		else if (option == "ADD") {
+		
 			displayTitle();
+
 			if (isEsp)
 				std::cout << "Agregando Contacto\n";
 			else {
 				std::cout << "Adding Contact\n";
 			}
-			inputContact(phoneBook, isEsp);
 
-		} else if (option == "SEARCH") {
+			inputContact(phoneBook, isEsp);
+		}
+
+		// SEARCH
+		else if (option == "SEARCH") {
+		
 			displayTitle();
+			
 			if (isEsp)
 				std::cout << "Buscando Contacto\n";
 			else
@@ -42,28 +52,35 @@ int	main(void) {
 			const int optionIndex = getIndexValue(phoneBook, isEsp);
 			const Contact contact = phoneBook.getIndexContacts(optionIndex);
 			printContact(contact, isEsp);
+		}
 
-		} else if (option == "ENG" && isEsp) {
+		// ENG
+		else if (option == "ENG" && isEsp) {
+		
 			isEsp = false;
 			displayTitle();
-			std::cout << "Switch to English\n";
+			std::cout << "Switch to English" << std::endl;
+		}
 
-		} else if (option == "ESP" && !isEsp) {
+		// ESP
+		else if (option == "ESP" && !isEsp) {
+
 			isEsp = true;
 			displayTitle();
-			std::cout << "Cambio a Español\n";
+			std::cout << "Cambio a Español" << std::endl;
+		}
 
-		} else {
+		// ELSE
+		else {
 			displayTitle();
 			if (isEsp)
 				std::cout << "Comando inválido: " << option << std::endl;
 			else	
 				std::cout << "Invalid command: " << option << std::endl;
 		}
+		
 		std::cout << std::endl;
-/*		for (int i = 0; i < phoneBook.getContactsCount(); i++) {
-			std::cout << "Nombre: " << phoneBook.getIndexContacts(i).getFirstName() << std::endl;
-		} */
+
 	}
 	return (0);
 }

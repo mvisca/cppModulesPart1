@@ -178,7 +178,9 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 	}
 
 //	std::cin.ignore();
-//	std::cin.get();
+	std::cin.get();
+
+	displayTitle();
 
 }
 
@@ -195,14 +197,19 @@ const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 			std::cout << "Chose an index: ";
 		}
 
-		char character;
-		std::cin >> character;
-		option = (character - '0') - 1;
-				
-		if (std::isdigit(character) && (option >= 0 && option < phoneBook.getContactsCount()))
-			break ;
-		
-		std::cout << std::endl;
+		std::string characters;
+		std::getline(std::cin, characters);
+
+		if (characters.length() > 1)
+			continue ;
+
+		option = (characters[0] - '0') - 1;
+		if (std::isdigit(characters[0])) {
+			if (option >= 0 && option < phoneBook.getContactsCount()) {
+				break ;
+			}
+		}
 	}
+
 	return option;
 }
