@@ -21,9 +21,8 @@ int	main(void) {
 			else
 				std::cout << "Leaving PhoneBook!\n";
 			execution = false;
-		}
 
-		else if (option == "ADD") {
+		} else if (option == "ADD") {
 			displayTitle();
 			if (isEsp)
 				std::cout << "Agregando Contacto\n";
@@ -31,41 +30,40 @@ int	main(void) {
 				std::cout << "Adding Contact\n";
 			}
 			inputContact(phoneBook, isEsp);
-		}
 
-		else if (option == "SEARCH") {
+		} else if (option == "SEARCH") {
 			displayTitle();
 			if (isEsp)
 				std::cout << "Buscando Contacto\n";
 			else
 				std::cout << "Searching Contact\n";
 			// Función de SEARCH
-		}
+			printContacts(phoneBook, isEsp);
+			// prompt index
+			int optionIndex = getIndexValue(isEsp);
+			const Contact contact = phoneBook.getIndexContacts(optionIndex);
 
-		else if (option == "ENG" && isEsp)
-		{
+		} else if (option == "ENG" && isEsp) {
 			isEsp = false;
 			displayTitle();
 			std::cout << "Switch to English\n";
-		}
 
-		else if (option == "ESP" && !isEsp)
-		{
+		} else if (option == "ESP" && !isEsp) {
 			isEsp = true;
 			displayTitle();
 			std::cout << "Cambio a Español\n";
-		}
-		else {
+		
+		} else {
 			displayTitle();
 			if (isEsp)
-				std::cout << "Comando inválido\n";
+				std::cout << "Comando inválido: " << option << std::endl;
 			else	
-				std::cout << "Invalid command\n";
+				std::cout << "Invalid command: " << option << std::endl;
 		}
-
-		for (int i = 0; i < phoneBook.getContactsCount(); i++) {
-			std::cout << "Nombre: " << phoneBook.getIndexContacts(i).getFirstName(); 
-		}
-	}	
+		std::cout << std::endl;
+/*		for (int i = 0; i < phoneBook.getContactsCount(); i++) {
+			std::cout << "Nombre: " << phoneBook.getIndexContacts(i).getFirstName() << std::endl;
+		} */
+	}
 	return (0);
 }

@@ -9,7 +9,7 @@ SRCS		:=	main.cpp 				\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	a.out
+TARGET		:=	phoneBook.out
 
 all: $(TARGET)
 

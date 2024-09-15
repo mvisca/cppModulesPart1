@@ -8,35 +8,21 @@ PhoneBook::PhoneBook(void) : _contactsCount(0) { }
 PhoneBook::~PhoneBook() { }
 
 // Getters
-int     PhoneBook::getMaxContacts(void) const {
+int	PhoneBook::getMaxContacts(void) const {
 	return PhoneBook::_maxContacts;
 }
 
-int		PhoneBook::getContactsCount(void) const {
+int	PhoneBook::getContactsCount(void) const {
 	return _contactsCount;
 }
 
-// Getters
-Contact    PhoneBook::searchContacts(const std::string& name) {
-
-	for (int i = 0; i < _maxContacts; i++) {
-
-		if (toUppercase(_contacts[i].getFirstName()) == toUppercase(name)) {
-
-			return _contacts[i];
-
-		}
-	}
-
-	return Contact();
-}
-
-Contact PhoneBook::getIndexContacts(const int i) const {
-	return PhoneBook::_contacts[i];
+const Contact&	PhoneBook::getIndexContacts(const int& optionIndex) const {
+	return _contacts[optionIndex];
 }
 
 // Setter
 void	PhoneBook::addContact(
+
 	std::string firstName,
 	std::string lastName,
 	std::string nickname,
@@ -79,6 +65,5 @@ void	PhoneBook::addContact(
 
 // Handlers
 void	PhoneBook::incrementCount(void) {
-
 	_contactsCount++;
 }

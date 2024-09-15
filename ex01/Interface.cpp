@@ -109,3 +109,64 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 		darkestSecret
 	);
 }
+
+void	printContacts(const PhoneBook& phoneBook, const bool& isEsp) {
+
+	std::string spaces(10, ' ');
+	spaces.push_back('|');
+	int	contactsCount = phoneBook.getContactsCount();
+
+	std::cout << "---------------------------------------------" << std::endl;
+	std::cout << "|Index     |First Name|Last Name |Nickname  |" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
+	for (int i = 0; i < contactsCount; i++) {
+		
+		std::string firstName = phoneBook.getIndexContacts(i).getFirstName();
+		size_t firstNameLen = firstName.length();
+
+		std::string lastName = phoneBook.getIndexContacts(i).getLastName();
+		size_t lastNameLen = lastName.length();
+
+		std::string nickname = phoneBook.getIndexContacts(i).getNickname();
+		size_t nicknameLen = nickname.length();
+
+		std::cout << "|" << i + 1 << spaces.substr(1, 11);
+
+		std::cout << firstName.substr(0, 10);
+		if (firstNameLen > 9) {
+			std::cout << "\b.|";
+		}
+		else {
+			std::cout << spaces.substr(firstNameLen, 11);
+		}
+
+		std::cout << lastName.substr(0, 10);
+		if (lastNameLen > 9) {
+			std::cout << "\b.|";
+		}
+		else {
+			std::cout << spaces.substr(lastNameLen, 11);
+		}
+
+		std::cout << nickname.substr(0, 10);
+		if (nicknameLen > 9) {
+			std::cout << "\b.|";
+		}
+		else {
+			std::cout << spaces.substr(nicknameLen, 11);
+		}
+
+		std::cout << std::endl;
+	}
+	std::cout << "---------------------------------------------" << std::endl;
+}
+
+const int	getIndexValue(const bool& isEsp) {
+	if (isEsp) {
+		std::cout << "Elija un índice: ";
+		std::string optionIndex;
+		std::getline(std::cin, optionIndex);
+	}
+
+	return 1;
+}

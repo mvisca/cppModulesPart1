@@ -21,10 +21,9 @@ public:
 	~PhoneBook();
 
 	// Getter
-	int		getMaxContacts(void) const;
-	int		getContactsCount(void) const;
-	Contact	searchContacts(const std::string& name);
-	Contact getIndexContacts(const int i) const;
+	int					getMaxContacts(void) const;
+	int					getContactsCount(void) const;
+	const Contact&		getIndexContacts(const int& optionIndex) const;
 
 	// Setter
 	void	addContact(

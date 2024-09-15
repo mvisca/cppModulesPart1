@@ -9,8 +9,10 @@
 
 std::string toUppercase(std::string str);
 
-void	    displayTitle(void);
+void		displayTitle(void);
 std::string	displayMenuGetValue(bool isEsp);
-void        inputContact(PhoneBook& phoneBook, const bool& isEsp);
+void		inputContact(PhoneBook& phoneBook, const bool& isEsp);
+void		printContacts(const PhoneBook& phoneBook, const bool& isEsp);
+const int   getIndexValue(const bool& isEsp);
 
 #endif
