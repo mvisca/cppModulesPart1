@@ -119,6 +119,7 @@ void	printContacts(const PhoneBook& phoneBook, const bool& isEsp) {
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|Index     |First Name|Last Name |Nickname  |" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
+
 	for (int i = 0; i < contactsCount; i++) {
 		
 		std::string firstName = phoneBook.getIndexContacts(i).getFirstName();
@@ -161,12 +162,36 @@ void	printContacts(const PhoneBook& phoneBook, const bool& isEsp) {
 	std::cout << "---------------------------------------------" << std::endl;
 }
 
-const int	getIndexValue(const bool& isEsp) {
+void	printContact(const Contact& contact, const bool& isEsp) {
+
+	std::cout << contact.getFirstName() << std::endl;
+
+	if (isEsp) {
+	    std::cout << "Presiona [Enter] para continuar...";
+	}
+	else {
+	    std::cout << "Press [Enter] to continue...";
+	}
+}
+
+const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
+
 	if (isEsp) {
 		std::cout << "Elija un índice: ";
-		std::string optionIndex;
-		std::getline(std::cin, optionIndex);
+	}
+	else {
+		std::cout << "Chose an index: ";
 	}
 
-	return 1;
+	int	option;
+	char character;
+	std::cin >> character;
+	option = character - '0';
+
+	while (1) {
+		if (std::isdigit(character) && (option > 1 || option < phoneBook.getContactsCount())) {
+			break ;
+		}
+	}
+	return option -1;
 }

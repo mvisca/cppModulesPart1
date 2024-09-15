@@ -13,6 +13,7 @@ void		displayTitle(void);
 std::string	displayMenuGetValue(bool isEsp);
 void		inputContact(PhoneBook& phoneBook, const bool& isEsp);
 void		printContacts(const PhoneBook& phoneBook, const bool& isEsp);
-const int   getIndexValue(const bool& isEsp);
+void		printContact(const Contact& contact, const bool& isEsp);
+const int   getIndexValue(const PhoneBook& phoneBook, const bool& isEsp);
 
 #endif

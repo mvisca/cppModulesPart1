@@ -37,11 +37,12 @@ int	main(void) {
 				std::cout << "Buscando Contacto\n";
 			else
 				std::cout << "Searching Contact\n";
-			// Función de SEARCH
+
 			printContacts(phoneBook, isEsp);
-			// prompt index
-			int optionIndex = getIndexValue(isEsp);
+			const int optionIndex = getIndexValue(phoneBook, isEsp);
 			const Contact contact = phoneBook.getIndexContacts(optionIndex);
+			printContact(contact, isEsp);
+//			std::this_thread::sleep_for(std::chrono::seconds(1));
 
 		} else if (option == "ENG" && isEsp) {
 			isEsp = false;
@@ -52,7 +53,7 @@ int	main(void) {
 			isEsp = true;
 			displayTitle();
 			std::cout << "Cambio a Español\n";
-		
+
 		} else {
 			displayTitle();
 			if (isEsp)
