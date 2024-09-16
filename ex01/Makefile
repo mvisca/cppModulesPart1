@@ -1,5 +1,5 @@
 COMP		:=	c++
-FLAFS		:=	-Wall -Wextra -Werror -std=++98
+FLAFS		:=	-Wall -Wextra -Werror -std=c++98
 
 SRCS		:=	main.cpp 				\
 				AuxiliarFunctions.cpp	\
