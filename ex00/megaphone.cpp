@@ -4,11 +4,10 @@ void	extra(std::string line);
 
 int		main(int ac, char **av)
 {
-	if (ac > 1)
-	{
-		std::string line;
-		for (int i = 1; i < ac; i++)
-		{
+	std::string line = "";
+
+	if (ac > 1) {
+		for (int i = 1; i < ac; i++) {
 			std::string s = av[i];
 			for (size_t j = 0; j < s.length(); j++)
 			{
@@ -16,13 +15,13 @@ int		main(int ac, char **av)
 			}
 			line = line + s;
 		}
-		std::cout << line << std::endl;
 	}
-	else
-	{
-		std::string line = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-		extra(line);
+
+	else {
+		line = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	}
+
+	extra(line);
 	return (0);
 }
 
