@@ -1,9 +1,7 @@
 #include "Zombie.hpp"
 
 // Imp constructor
-Zombie::Zombie(std::string zombieName) : name(zombieName) { 
-    return this;
-}
+Zombie::Zombie(std::string zombieName) : name(zombieName) {}
 
 // Imp destructor implicito para que imprima
 Zombie::~Zombie() {

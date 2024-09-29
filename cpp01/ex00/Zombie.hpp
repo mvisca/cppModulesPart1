@@ -1,14 +1,13 @@
 #ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#define ZOMBIE_HPP
 
 # include <iostream>
 # include <string>
 
 class Zombie {
-
 private:
     // Atributo privado
-    std::string name; 
+    std::string name;
 
 public:
     // Constructor
@@ -17,15 +16,18 @@ public:
     // Destructor
     ~Zombie();
 
-    // Getter
+    // Función miembro announce
+    void announce() const;
+
+    // Getter Zombie name
     std::string getName() const;
 
-    // Funcion miembro
-    void announce(void);
+    // Funciones estáticas
+    // Zombie heap
+    static Zombie* newZombie(std::string name);
 
-    // Funcion estatica
-    static Zombie* newZombie(std::string name);  // Crea un nuevo Zombie en memoria dinámica
-    static void randomChump(std::string name);   // Crea un Zombie en el stack y lo anuncia
+    // Zombie stack con announce
+    static void randomChump(std::string name);
 };
 
 #endif
