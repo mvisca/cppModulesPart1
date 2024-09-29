@@ -1,5 +1,5 @@
-COMP		:=	c++
-FLAFS		:=	-Wall -Wextra -Werror -std=c++98
+CXX		:=	c++
+FLAGS		:=	-Wall -Wextra -Werror -std=c++98
 
 SRCS		:=	main.cpp 				\
 				AuxiliarFunctions.cpp	\
@@ -14,10 +14,10 @@ TARGET		:=	phoneBook.out
 all: $(TARGET)
 
 $(TARGET): $(OBJS) Makefile
-	$(COMP) $(FLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
 %.o: %.cpp Contact.hpp PhoneBook.hpp GlobalHeaders.hpp
-	$(COMP) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(TARGET)
@@ -27,4 +27,4 @@ fclean: clean
 
 re: fclean all
 
--PHONY: all clean re
+.PHONY: all clean re
