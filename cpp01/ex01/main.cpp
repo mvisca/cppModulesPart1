@@ -8,7 +8,7 @@ int main(int ac, char **av) {
 
     while (ac > 1 && av[1][i] >= '0' && av[1][i] <= '9' && i < 5) {
         N *= 10;
-        N += av[1][0] - '0';
+        N += av[1][i] - '0';
         i ++;
     }
     
@@ -18,8 +18,8 @@ int main(int ac, char **av) {
 
     Zombie* horde = zombieHorde(N, name);
     
-    for (int i = 0; i < N; i++) {
-        std::cout << "Zombie[" << i << "] : " << name << "." << std::endl;
+    for (int j = 0; j < N; j++) {
+        std::cout << "Zombie[" << j << "] : " << name << "." << std::endl;
     }
     delete[] horde;
 }

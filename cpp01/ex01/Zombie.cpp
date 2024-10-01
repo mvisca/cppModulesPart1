@@ -1,11 +1,11 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie() : name("noName") {
-    std::cout << "Zombie: " << this->name << " created." << std::endl;
+    std::cout << R << "Zombie: " << W << this->name << G << " created @ " << W << this << B << "." << W << std::endl;
 }
 
 Zombie::Zombie(std::string zombieName) : name(zombieName) {
-        std::cout << "Zombie: " << this->name << " created." << std::endl;
+        std::cout << R << "Zombie: " << W << this->name << G << " created @ " << W << &this->name << B << "." << W << std::endl;
 }
 
 Zombie::~Zombie() {
@@ -13,9 +13,9 @@ Zombie::~Zombie() {
 }
 
 void Zombie::setName(std::string& name) { 
-    std::cout << "Set name from " << this->name;
+    std::cout << R << "Set name from " << W << this->name;
     this->name = name;
-    std::cout << " to " << this->name << "." << std::endl;
+    std::cout << G << " to " << W << this->name << B << "." << W << std::endl;
 }
 
 std::string Zombie::getName() const {

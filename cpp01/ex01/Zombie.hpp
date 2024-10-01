@@ -22,4 +22,9 @@ public:
 
 Zombie* zombieHorde(int N, std::string name);
 
+const std::string R = "\033[31m";
+const std::string G = "\033[32m";
+const std::string B = "\033[34m";
+const std::string W = "\033[0m";
+
 #endif
