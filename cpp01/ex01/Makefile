@@ -4,12 +4,11 @@ HEAD		:=	Zombie.hpp
 
 SRCS		:=	main.cpp		\
 				Zombie.cpp		\
-				newZombie.cpp	\
-				randomChump.cpp
+				zombieHorde.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	brainz.out
+TARGET		:=	horde.out
 
 all: $(TARGET)
 

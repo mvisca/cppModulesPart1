@@ -6,24 +6,20 @@
 
 class Zombie {
 private:
-    // Atributo privado
     std::string name;
 
 public:
-    // Constructor
+    Zombie();
+    
     Zombie(std::string zombieName);
 
-    // Destructor
     ~Zombie();
 
-    // Función miembro announce
-    void announce() const;
+    void setName(std::string &name);
 
-    // Getter Zombie name
     std::string getName() const;
-
-    // Funcion estatica
-    Zombie* zombiHorde(int N, std::string name):
 };
+
+Zombie* zombieHorde(int N, std::string name);
 
 #endif

@@ -1,19 +1,23 @@
 #include "Zombie.hpp"
 
-// Imp constructor
-Zombie::Zombie(std::string zombieName) : name(zombieName) {}
-
-// Imp destructor implicito para que imprima
-Zombie::~Zombie() {
-    std::cout << name << " is destroyed!" << std::endl;
+Zombie::Zombie() : name("noName") {
+    std::cout << "Zombie: " << this->name << " created." << std::endl;
 }
 
-// Getter de name
+Zombie::Zombie(std::string zombieName) : name(zombieName) {
+        std::cout << "Zombie: " << this->name << " created." << std::endl;
+}
+
+Zombie::~Zombie() {
+    std::cout << name << " destroyed!" << std::endl;
+}
+
+void Zombie::setName(std::string& name) { 
+    std::cout << "Set name from " << this->name;
+    this->name = name;
+    std::cout << " to " << this->name << "." << std::endl;
+}
+
 std::string Zombie::getName() const {
     return name;
-}
-
-// Implementación de la función announce
-void Zombie::announce() const {
-    std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

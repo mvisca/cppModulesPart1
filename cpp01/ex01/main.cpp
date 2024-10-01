@@ -1,19 +1,25 @@
 #include "Zombie.hpp"
 
-int main() {
-    Zombie* zOne = Zombie::newZombie("Z @ Heap One");
-    zOne->announce();
-    Zombie* zTwo = Zombie::newZombie("Z @ Heap Two");
-    zTwo->announce();
+int main(int ac, char **av) {
 
-    Zombie::randomChump("Z @ Stack One");
-    Zombie::randomChump("Foo (Z @ Stack Two)");
+    int         N = 0;
+    int         i = 0;
+    std::string name = "Pepito";
 
-    Zombie* zThree = Zombie::newZombie("Goo @ Heap");
-    zThree->announce();
+    while (ac > 1 && av[1][i] >= '0' && av[1][i] <= '9' && i < 5) {
+        N *= 10;
+        N += av[1][0] - '0';
+        i ++;
+    }
+    
+    if (N == 0) {
+        N = 3;
+    }
 
-    delete zOne;
-    delete zTwo;
-    delete zThree;
+    Zombie* horde = zombieHorde(N, name);
+    
+    for (int i = 0; i < N; i++) {
+        std::cout << "Zombie[" << i << "] : " << name << "." << std::endl;
+    }
+    delete[] horde;
 }
- 
