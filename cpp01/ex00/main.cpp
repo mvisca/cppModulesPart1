@@ -16,4 +16,3 @@ int main() {
     delete zTwo;
     delete zThree;
 }
- 
