@@ -2,13 +2,11 @@ CXX			:=	c++
 FLAGS		:=	-Wall -Wextra -Werror -std=c++98
 HEAD		:=	Zombie.hpp
 
-SRCS		:=	main.cpp		\
-				Zombie.cpp		\
-				zombieHorde.cpp
+SRCS		:=	main.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	horde.out
+TARGET		:=	hiThisIsBrain.out
 
 all: $(TARGET)
 

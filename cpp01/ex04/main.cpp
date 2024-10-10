@@ -44,20 +44,31 @@ int main(int ac, char** av) {
 
 	std::string filename(av[1]);
 	std::ifstream file(filename.c_str());
+
 	if (!file) {
 		std::cerr << "Something went wrong." << std::endl;
 		return 1;
 	}
+
 	std::ostringstream buf;
 	buf << file.rdbuf();
 	std::string content = buf.str();
 
+	file.close();
+
+	// prescindir
+	std::cout << content << std::endl;
+
 	std::string s1(av[2]);
 	std::string s2(av[3]);
 
+
 // reemplazar en content s1x s2
 
-	file.close();
+// escribir el filename.replace
+
+// validar errores y liberar recursos
+
 	return 0;
 }
 
