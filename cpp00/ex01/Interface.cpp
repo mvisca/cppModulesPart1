@@ -39,7 +39,13 @@ std::string	displayMenuGetValue(bool isEsp) {
 	}
 
 	std::string	option;
-	std::getline(std::cin, option);
+	bool		validInput = false;
+	while (!validInput) {
+		std::getline(std::cin, option);
+		if (!option.empty() && !std::cin.eof()) {
+			validInput = true;
+		}
+	}
 
 	return (option);
 }
