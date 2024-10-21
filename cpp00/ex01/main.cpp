@@ -4,9 +4,9 @@
 
 int	main(void) {
 
-	bool		isEsp = true;
 	PhoneBook	phoneBook;
 	std::string	option;
+	bool		isEsp = true;
 
 	displayTitle();
 
@@ -14,9 +14,46 @@ int	main(void) {
 
 		option = toUppercase(displayMenuGetValue(isEsp));
 
-		// EXIT
-		if (option == "EXIT") {
+		// ADD
+		if (option == "ADD") {
+			displayTitle();
+			if (isEsp)
+				std::cout << "Agregando Contacto\n";
+			else {
+				std::cout << "Adding Contact\n";
+			}
+			inputContact(phoneBook, isEsp);
+		}
 
+		// SEARCH
+		else if (option == "SEARCH") {
+			displayTitle();
+			if (isEsp)
+				std::cout << "Buscando Contacto\n";
+			else
+				std::cout << "Searching Contact\n";
+			printContacts(phoneBook, isEsp);
+			const int optionIndex = getIndexValue(phoneBook, isEsp);
+			const Contact contact = phoneBook.getIndexContacts(optionIndex);
+			printContact(contact, isEsp);
+		}
+
+		// SWITCH ENG
+		else if (option == "ENG" && isEsp) {
+			isEsp = false;
+			displayTitle();
+			std::cout << "Switch to English" << std::endl;
+		}
+
+		// SWITCH ESP
+		else if (option == "ESP" && !isEsp) {
+			isEsp = true;
+			displayTitle();
+			std::cout << "Cambio a Español" << std::endl;
+		}
+
+		// EXIT
+		else if (option == "EXIT") {
 			if (isEsp)
 				std::cout << "Saliendo de PhoneBook!\n";
 			else
@@ -24,53 +61,6 @@ int	main(void) {
 			execution = false;
 		}
 
-		// ADD
-		else if (option == "ADD") {
-		
-			displayTitle();
-
-			if (isEsp)
-				std::cout << "Agregando Contacto\n";
-			else {
-				std::cout << "Adding Contact\n";
-			}
-
-			inputContact(phoneBook, isEsp);
-		}
-
-		// SEARCH
-		else if (option == "SEARCH") {
-		
-			displayTitle();
-			
-			if (isEsp)
-				std::cout << "Buscando Contacto\n";
-			else
-				std::cout << "Searching Contact\n";
-
-			printContacts(phoneBook, isEsp);
-			const int optionIndex = getIndexValue(phoneBook, isEsp);
-			const Contact contact = phoneBook.getIndexContacts(optionIndex);
-			printContact(contact, isEsp);
-		}
-
-		// ENG
-		else if (option == "ENG" && isEsp) {
-		
-			isEsp = false;
-			displayTitle();
-			std::cout << "Switch to English" << std::endl;
-		}
-
-		// ESP
-		else if (option == "ESP" && !isEsp) {
-
-			isEsp = true;
-			displayTitle();
-			std::cout << "Cambio a Español" << std::endl;
-		}
-
-		// ELSE
 		else {
 			displayTitle();
 			if (isEsp)
@@ -78,9 +68,6 @@ int	main(void) {
 			else	
 				std::cout << "Invalid command: " << option << std::endl;
 		}
-		
-		std::cout << std::endl;
-
 	}
 	return (0);
 }

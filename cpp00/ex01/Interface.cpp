@@ -2,6 +2,30 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
+std::string	inputControl(void) {
+	std::string input;
+
+	while (true) {
+		if (std::getline(std::cin, input)) {
+			if (!input.empty()) {
+				return (input);
+			}
+			else {
+				std::cout << "Empty/Vacía." << std::endl;
+				continue;
+			}
+		}
+		else if (std::cin.eof()) {
+			std::cout << "Invalid / Inválido." << std::endl;
+			exit(1);
+		}
+		else if (std::cin.fail()) {
+			std::cout << "Fail / Fallo." << std::endl;
+			std::cin.clear();
+		}
+	}
+}
+
 void	displayTitle(void) {
 
 	system("clear");
@@ -39,14 +63,7 @@ std::string	displayMenuGetValue(bool isEsp) {
 	}
 
 	std::string	option;
-	bool		validInput = false;
-	while (!validInput) {
-		std::getline(std::cin, option);
-		if (!option.empty() && !std::cin.eof()) {
-			validInput = true;
-		}
-	}
-
+	option = inputControl();
 	return (option);
 }
 
@@ -58,21 +75,15 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter first name: " << std::endl;
 	}
-	if (!std::getline(std::cin, firstName)) {
-		std::cout << "Error! Input set to 'Default'\n";
-		firstName = "Default";
-	}
-	
+	firstName = inputControl();
+
 	std::string lastName;
 	if (isEsp) {
 		std::cout << "Entre el segundo nombre: " << std::endl;
 	} else {
 		std::cout << "Enter last name: " << std::endl;
 	}
-	if (!std::getline(std::cin, lastName)) {
-		std::cout << "Error! Input set to 'Default'\n";
-		lastName = "Default";
-	}
+	lastName = inputControl();
 
 	std::string nickname;
 	if (isEsp) {
@@ -80,10 +91,7 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter nickname: " << std::endl;
 	}
-	if (!std::getline(std::cin, nickname)) {
-		std::cout << "Error! Input set to 'Default'\n";
-		nickname = "Default";
-	}
+	nickname = inputControl();
 	
 	std::string phoneNumber;
 	if (isEsp) {
@@ -91,10 +99,7 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter phone numbrer: " << std::endl;
 	}
-	if (!std::getline(std::cin, phoneNumber)) {
-		std::cout << "Error! Input set to 'Default'\n";
-		nickname = "Default";
-	}
+	phoneNumber = inputControl();
 	
 	std::string darkestSecret;
 	if (isEsp) {
@@ -102,10 +107,7 @@ void	inputContact(PhoneBook& phoneBook, const bool& isEsp) {
 	} else {
 		std::cout << "Enter darkest secret: " << std::endl;
 	}
-	if (!std::getline(std::cin, darkestSecret)) {
-		std::cout << "Error! Input set to 'Default'\n";
-		darkestSecret = "Default";
-	}
+	darkestSecret = inputControl();
 
 	phoneBook.addContact(
 		firstName,
@@ -170,24 +172,25 @@ void	printContacts(const PhoneBook& phoneBook, const bool& isEsp) {
 
 void	printContact(const Contact& contact, const bool& isEsp) {
 
-	std::cout << contact.getFirstName() << std::endl;
-	std::cout << contact.getLastName() << std::endl;
-	std::cout << contact.getNickname() << std::endl;
-	std::cout << contact.getPhoneNumber() << std::endl;
-	std::cout << contact.getDarkestSecret() << std::endl;
-
 	if (isEsp) {
+		std::cout << "Nombre: " << contact.getFirstName() << std::endl;
+		std::cout << "Apellido: " << contact.getLastName() << std::endl;
+		std::cout << "Apodo: " << contact.getNickname() << std::endl;
+		std::cout << "Teléfono: " << contact.getPhoneNumber() << std::endl;
+		std::cout << "Secreto: " << contact.getDarkestSecret() << std::endl;
 		std::cout << "Presiona [Enter] para continuar...";
 	}
 	else {
+		std::cout << "First Name: " << contact.getFirstName() << std::endl;
+		std::cout << "Last Name: " << contact.getLastName() << std::endl;
+		std::cout << "Nickname: " << contact.getNickname() << std::endl;
+		std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
+		std::cout << "Secret: " << contact.getDarkestSecret() << std::endl;
 		std::cout << "Press [Enter] to continue...";
 	}
 
-//	std::cin.ignore();
 	std::cin.get();
-
 	displayTitle();
-
 }
 
 const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
@@ -204,7 +207,8 @@ const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 		}
 
 		std::string characters;
-		std::getline(std::cin, characters);
+
+		characters = inputControl();
 
 		if (characters.length() > 1)
 			continue ;
