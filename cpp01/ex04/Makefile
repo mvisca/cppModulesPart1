@@ -17,11 +17,16 @@ $(TARGET): $(OBJS) Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(TARGET) test.txt
 
 fclean: clean
 	rm -f $(TARGET)
 
 re: fclean all
 
-.PHONY: all clean re
+# Opcional para crear archivo de prueba
+test: all
+	@echo "Este es un archivo de prueba" > test.txt
+	@echo "Archivo de prueba 'test.txt' creado con éxito."
+
+.PHONY: all clean re test

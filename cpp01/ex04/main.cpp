@@ -53,11 +53,13 @@ int main(int ac, char** av) {
 	std::string filename(av[1]);
 	std::ifstream file(filename.c_str());
 
+	// Protección de creación del file
 	if (!file) {
 		std::cerr << "Error: Algo salió mal al intentar abrir el archivo." << std::endl;
 		return 1;
 	}
 
+	// Crea un flujo de memoria, lo carga con el file y lo pasa a string para almacenarlo en content
 	std::ostringstream buf;
 	buf << file.rdbuf();
 	std::string content = buf.str();
@@ -69,7 +71,7 @@ int main(int ac, char** av) {
 
 	// Busqueda no encontrada
 	if (content.find(s1) == std::string::npos) {
-			std::cerr << "Error: El texto '" << s1 << "' no se encontró en el archivo." << std::endl;
+			std::cerr << "Advertencia: El texto '" << s1 << "' no se encontró en el archivo." << std::endl;
 		}
 
 	// Reemplazo manual
@@ -79,12 +81,13 @@ int main(int ac, char** av) {
 	std::string result;
 
 	while ((end = content.find(s1, start)) != std::string::npos) {
-		result.append(content.substr(start, end));
+		result.append(content.substr(start, end - start));
 		result.append(s2);
 		start = end + s1Len;
 	}
 	result.append(content.substr(start));
 
+	// Creación del nuevo fichero y protección de fallos
 	std::string newFilename = filename + ".replace";
 	std::ofstream newFile(newFilename.c_str());
 	if (!newFile) {
@@ -92,6 +95,7 @@ int main(int ac, char** av) {
 		return 1;
 	}
 
+	// Escritura del nuevo fichero
 	newFile << result;
 	newFile.close();
 
