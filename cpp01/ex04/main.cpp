@@ -6,8 +6,8 @@
 static int validParams(int ac, char** av) {
 
 	if (ac != 4){
-		std::cerr << "Invalid number of arguments" << std::endl;
-		std::cerr << "./replace <filename> <find> <replace>" << std::endl;
+		std::cerr << "Error: Número incorrecto de argumentos." << std::endl;
+		std::cerr << "Debe incluir: ./replace <filename> <find> <replace>" << std::endl;
 		return 1;
 	}
 	
@@ -15,8 +15,16 @@ static int validParams(int ac, char** av) {
 	std::string s1 = av[2];
 	std::string s2 = av[3];
 
-	if (filename.empty() || s1.empty() || s2.empty()) {
-		std::cerr << "Not valid; inputs can't be empty." << std::endl;
+	if (filename.empty()) {
+		std::cerr << "Error: El nombre del archivo no puede estar vacío." << std::endl;
+		return 1;
+	}
+	if (s1.empty()) {
+		std::cerr << "Error: El texto a buscar no puede estar vacío." << std::endl;
+		return 1;
+	}
+	if (s2.empty()) {
+		std::cerr << "Error: El texto de reemplazo no puede estar vacío." << std::endl;
 		return 1;
 	}
 	return 0;
@@ -25,7 +33,7 @@ static int validParams(int ac, char** av) {
 static int	validFilename(std::string filename) {
 	std::ifstream file(filename.c_str());
 	if (!file) {
-		std::cerr << "Failed to open file." << std::endl;
+		std::cerr << "Error: No se pudo abrir el archivo." << std::endl;
 		return 1;
 	}
 	file.close();
@@ -46,7 +54,7 @@ int main(int ac, char** av) {
 	std::ifstream file(filename.c_str());
 
 	if (!file) {
-		std::cerr << "Something went wrong." << std::endl;
+		std::cerr << "Error: Algo salió mal al intentar abrir el archivo." << std::endl;
 		return 1;
 	}
 
@@ -56,23 +64,38 @@ int main(int ac, char** av) {
 
 	file.close();
 
-	// prescindir
-	std::cout << content << std::endl;
-
 	std::string s1(av[2]);
 	std::string s2(av[3]);
 
+	// Busqueda no encontrada
+	if (content.find(s1) == std::string::npos) {
+			std::cerr << "Error: El texto '" << s1 << "' no se encontró en el archivo." << std::endl;
+		}
 
-// reemplazar en content s1x s2
+	// Reemplazo manual
+	size_t start = 0;
+	size_t end = 0;
+	size_t s1Len = s1.length();
+	std::string result;
 
-// escribir el filename.replace
+	while ((end = content.find(s1, start)) != std::string::npos) {
+		result.append(content.substr(start, end));
+		result.append(s2);
+		start = end + s1Len;
+	}
+	result.append(content.substr(start));
 
-// validar errores y liberar recursos
+	std::string newFilename = filename + ".replace";
+	std::ofstream newFile(newFilename.c_str());
+	if (!newFile) {
+		std::cerr << "Error: No se pudo crear el archivo de salida '" << newFilename << "'." << std::endl;
+		return 1;
+	}
+
+	newFile << result;
+	newFile.close();
+
+	std::cout << "Reemplazo completado. '" << newFilename << "' creado con éxito." << std::endl;
 
 	return 0;
 }
-
-
-// std::ifstream file(filename.c_str()); diff
-
-// str.find(needle, initPos)
