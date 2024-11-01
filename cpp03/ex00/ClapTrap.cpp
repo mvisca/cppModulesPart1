@@ -84,7 +84,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 		return;
 	}
 	_life -= amount;
-	std::cout << _name << " recibe daño por " << amount << " puntos de vida y queda en " << _life << "." << std::endl;
+	std::cout << _name << " recibe daño por " << amount << " puntos de vida y queda en " << (_life < 1 ? 0 : _life) << "." << std::endl;
 	if (_life < 1) {
 		std::cout << _name << " ha sido derrotado." << std::endl;
 		_life = 0;
