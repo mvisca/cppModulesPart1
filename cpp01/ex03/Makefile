@@ -9,7 +9,7 @@ SRCS		:=	main.cpp		\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	unnecessaryViolence.out
+TARGET		:=	unnecessaryViolence
 
 all: $(TARGET)
 

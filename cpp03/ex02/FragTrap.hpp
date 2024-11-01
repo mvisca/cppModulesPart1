@@ -1,21 +1,21 @@
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include <iostream>
 #include <string>
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class FragTrap : public ClapTrap {
 	public:
 		//------- CONSTRUCTOR -------//
-		ScavTrap(const std::string name);
+		FragTrap(const std::string& name);
 
 		//------- FUNCTIONS -------//
 		void attack(const std::string& target);
-		void guardGate(void);
+		void highFivesGuys(void);
 
 		//------- DESTRUCTOR -------//
-		~ScavTrap();
+		~FragTrap();
 };
 
 #endif

@@ -5,7 +5,7 @@ SRCS		:=	megaphone.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	megaphone.out
+TARGET		:=	megaphone
 
 all: $(TARGET)
 

@@ -6,7 +6,7 @@ SRCS		:=	main.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	hiThisIsBrain.out
+TARGET		:=	hiThisIsBrain
 
 all: $(TARGET)
 

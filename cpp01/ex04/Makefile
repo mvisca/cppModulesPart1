@@ -6,7 +6,7 @@ SRCS		:=	main.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	replace.out
+TARGET		:=	replace
 
 all: $(TARGET)
 

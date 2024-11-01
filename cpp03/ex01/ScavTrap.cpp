@@ -3,10 +3,7 @@
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
-    setLife(100);
-    setEnergy(50);
-    setAttack(20);
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20) {
 	std::cout << "Constructor con parámetro 'name' de ScavTrap llamado." << std::endl;
 }
 

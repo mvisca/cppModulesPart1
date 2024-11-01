@@ -8,7 +8,7 @@ SRCS		:=	main.cpp		\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	horde.out
+TARGET		:=	horde
 
 all: $(TARGET)
 

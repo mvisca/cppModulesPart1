@@ -7,7 +7,9 @@ ClapTrap::ClapTrap() : _name("noName"), _life(10), _energy(10), _attack(0) {
 	std::cout << "Constructor por defecto de ClapTrap llamado." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name ) : _name(name), _life(10), _energy(10), _attack(0) { }
+ClapTrap::ClapTrap(const std::string name ) : _name(name), _life(10), _energy(10), _attack(0) {
+	std::cout << "Constructor con parámetro nombre de ClapTrap llamado." << std::endl;
+ }
 
 ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _life(other._life), _energy(other._energy), _attack(other._attack) {
 	std::cout << "Constructor de copia de ClapTrap llamado." << std::endl;

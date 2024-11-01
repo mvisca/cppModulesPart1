@@ -6,7 +6,7 @@ SRCS            :=      main.cpp Harl.cpp
 
 OBJS            :=      $(SRCS:.cpp=.o)
 
-TARGET          :=      harl.out
+TARGET          :=      harl
 
 all: $(TARGET)
 

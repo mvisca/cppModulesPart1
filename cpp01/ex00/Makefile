@@ -9,7 +9,7 @@ SRCS		:=	main.cpp		\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-TARGET		:=	brainz.out
+TARGET		:=	brainz
 
 all: $(TARGET)
 
