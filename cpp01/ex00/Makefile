@@ -1,6 +1,6 @@
 CXX			:=	c++
-FLAGS		:=	-Wall -Wextra -Werror -std=c++98
-HEAD		:=	Zombie.hpp
+
+FLAGS		:=	-Wall -Wextra -Werror -std=c++98 -MMD
 
 SRCS		:=	main.cpp		\
 				Zombie.cpp		\
@@ -9,22 +9,25 @@ SRCS		:=	main.cpp		\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
+DEPS		:=	$(OBJS:.o=.d)
+
 TARGET		:=	brainz
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS) Makefile
+$(TARGET): $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.cpp $(HEAD)
+%.o: %.cpp Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -f $(TARGET)
 
 re: fclean all
 
-.PHONY: all clean re
+.PHONY: all clean fclean re

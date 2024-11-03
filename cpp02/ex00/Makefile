@@ -1,10 +1,12 @@
 CXX             :=      c++
 
-FLAGS           :=      -Wall -Wextra -Werror -std=c++98
+FLAGS           :=      -Wall -Wextra -Werror -std=c++98 -MMD
 
 SRCS            :=      main.cpp Fixed.cpp
 
 OBJS            :=      $(SRCS:.cpp=.o)
+
+DEPS			:=		$(OBJS:.o=.d)
 
 TARGET          :=      fixed_point
 
@@ -13,11 +15,12 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.cpp Fixed.hpp
+%.o: %.cpp Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -f $(TARGET)

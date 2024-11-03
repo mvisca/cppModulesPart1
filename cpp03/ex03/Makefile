@@ -1,19 +1,30 @@
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJS = $(SRCS:.cpp=.o)
-NAME = diamondtrap
+CXX			:=	c++
+
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98 -MMD
+
+SRCS		:=	main.cpp		\
+				ClapTrap.cpp	\
+				ScavTrap.cpp	\
+				FragTrap.cpp	\
+				DiamondTrap.cpp
+
+OBJS		:=	$(SRCS:.cpp=.o)
+
+DEPS		:=	$(OBJS:.o=.d)
+
+NAME		:=	diamondtrap
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.cpp
+%.o: %.cpp Makefile
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -f $(NAME)

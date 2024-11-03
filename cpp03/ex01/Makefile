@@ -1,22 +1,30 @@
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
-OBJS = $(SRCS:.cpp=.o)
-NAME = scavtrap
+CXX			:=	c++
 
-all: $(NAME)
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98 -MMD
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+SRCS		:=	main.cpp		\
+				ClapTrap.cpp	\
+				ScavTrap.cpp
 
-%.o: %.cpp
+OBJS		:=	$(SRCS:.cpp=.o)
+
+DEPS		:=	$(OBJS:.o=.d)
+
+TARGET		:=	scavtrap
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+
+%.o: %.cpp Makefile
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(TARGET)
 
 re: fclean all
 

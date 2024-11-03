@@ -1,32 +1,38 @@
 CXX			:=	c++
-FLAGS		:=	-Wall -Wextra -Werror -std=c++98
-HEAD		:=
+
+FLAGS		:=	-Wall -Wextra -Werror -std=c++98 -MMD
 
 SRCS		:=	main.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
+DEPS		:=	$(OBJS:.o=.d)
+
+TESTFILE	:=	test.txt
+
+REPLACEFILE	:=	$(TESTFILE).replace
+
 TARGET		:=	replace
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS) Makefile
+$(TARGET): $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.cpp $(HEAD)
+%.o: %.cpp Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET) test.txt
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(TESTFILE) $(REPLACEFILE)
 
 re: fclean all
 
 # Opcional para crear archivo de prueba
 test: all
-	@echo "Este es un archivo de prueba" > test.txt
+	@echo "Este es un archivo de prueba" > $(TESTFILE)
 	@echo "Archivo de prueba 'test.txt' creado con éxito."
 
-.PHONY: all clean re test
+.PHONY: all clean fclean re test

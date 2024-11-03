@@ -1,10 +1,12 @@
 CXX             :=      c++
 
-FLAGS           :=      -Wall -Wextra -Werror -std=c++98
+FLAGS           :=      -Wall -Wextra -Werror -std=c++98 -MMD
 
 SRCS            :=      main.cpp Harl.cpp
 
 OBJS            :=      $(SRCS:.cpp=.o)
+
+DEPS			:=		$(OBJS:.o=.d)
 
 TARGET          :=      harl
 
@@ -13,11 +15,12 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.cpp Harl.hpp
+%.o: %.cpp Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -f $(TARGET)
