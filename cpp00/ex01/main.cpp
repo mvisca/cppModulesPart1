@@ -38,7 +38,7 @@ int	main(void) {
 				const Contact contact = phoneBook.getIndexContacts(optionIndex);
 				printContact(contact, isEsp);
 			} else {
-				const int optionIndex = getIndexValue(phoneBook, isEsp);
+				getIndexValue(phoneBook, isEsp);
 			}
 			std::cin.get();
 			displayTitle();

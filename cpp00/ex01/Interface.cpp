@@ -134,9 +134,15 @@ void	printContacts(const PhoneBook& phoneBook, const bool& isEsp) {
 	spaces.push_back('|');
 	int	contactsCount = phoneBook.getContactsCount();
 
-	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "|Index     |First Name|Last Name |Nickname  |" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
+	if (isEsp) {
+		std::cout << "---------------------------------------------" << std::endl;
+		std::cout << "|Index     |First Name|Last Name |Nickname  |" << std::endl;
+		std::cout << "---------------------------------------------" << std::endl;
+	} else {
+		std::cout << "---------------------------------------------" << std::endl;
+		std::cout << "|Indice    |Nombre    |Apellido  |Apodo     |" << std::endl;
+		std::cout << "---------------------------------------------" << std::endl;
+	}
 
 	for (int i = 0; i < contactsCount; i++) {
 		
@@ -200,7 +206,7 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 	}
 }
 
-const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
+int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 
 	int	option;
 

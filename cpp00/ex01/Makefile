@@ -7,17 +7,24 @@ SRCS		:=	main.cpp 				\
 				Interface.cpp			\
 				PhoneBook.cpp
 
+HEADERS		:=	Contact.hpp 			\
+				PhoneBook.hpp 			\
+				GlobalHeader.hpp
+
 OBJS		:=	$(SRCS:.cpp=.o)
+
+DEPS 		:= $(OBJS:.o=.d)
 
 TARGET		:=	phoneBook
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS) Makefile
+$(TARGET): $(OBJS)
 	$(CXX) $(FLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.cpp Contact.hpp PhoneBook.hpp GlobalHeaders.hpp
+%.o: %.cpp $(HEADERS) Makefile
 	$(CXX) $(FLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
@@ -27,4 +34,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean re
+.PHONY: all clean fclean
