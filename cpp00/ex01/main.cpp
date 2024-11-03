@@ -28,14 +28,20 @@ int	main(void) {
 		// SEARCH
 		else if (option == "SEARCH") {
 			displayTitle();
-			if (isEsp)
-				std::cout << "Buscando Contacto\n";
-			else
-				std::cout << "Searching Contact\n";
-			printContacts(phoneBook, isEsp);
-			const int optionIndex = getIndexValue(phoneBook, isEsp);
-			const Contact contact = phoneBook.getIndexContacts(optionIndex);
-			printContact(contact, isEsp);
+			if (phoneBook.getContactsCount() > 0) {
+				if (isEsp)
+					std::cout << "Buscando Contacto\n";
+				else
+					std::cout << "Searching Contact\n";
+				printContacts(phoneBook, isEsp);
+				const int optionIndex = getIndexValue(phoneBook, isEsp);
+				const Contact contact = phoneBook.getIndexContacts(optionIndex);
+				printContact(contact, isEsp);
+			} else {
+				const int optionIndex = getIndexValue(phoneBook, isEsp);
+			}
+			std::cin.get();
+			displayTitle();
 		}
 
 		// SWITCH ENG

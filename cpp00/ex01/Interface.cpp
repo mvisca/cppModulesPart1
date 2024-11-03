@@ -188,15 +188,22 @@ void	printContact(const Contact& contact, const bool& isEsp) {
 		std::cout << "Secret: " << contact.getDarkestSecret() << std::endl;
 		std::cout << "Press [Enter] to continue...";
 	}
-
-	std::cin.get();
-	displayTitle();
 }
 
 const int	getIndexValue(const PhoneBook& phoneBook, const bool& isEsp) {
 
 	int	option;
 
+	if (phoneBook.getContactsCount() == 0) {
+		if (isEsp) {
+			std::cout << "No se encontraron contactos." << std::endl;
+			std::cout << "Presiona [Enter] para continuar..." << std::endl;
+		} else {
+			std::cout << "No contacts found." << std::endl;
+			std::cout << "Press [Enter] to continue..." << std::endl;
+		}
+		return (-1);
+	}
 	while (true) {
 
 		if (isEsp) {
