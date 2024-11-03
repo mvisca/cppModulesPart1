@@ -2,26 +2,36 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
+std::string trimString(std::string& str) {
+	size_t start = 0;
+	size_t end = str.length() - 1;
+	while (str[end] == ' ')
+		end--;
+	while (str[start] == ' ')
+		start++;
+	std::string trimed = str.substr(start, end - start + 1);
+	return trimed;
+}
+
 std::string	inputControl(void) {
 	std::string input;
 
 	while (true) {
-		if (std::getline(std::cin, input)) {
-			if (!input.empty()) {
-				return (input);
-			}
-			else {
-				std::cout << "Empty/Vacía." << std::endl;
-				continue;
-			}
-		}
-		else if (std::cin.eof()) {
+		if (std::getline(std::cin, input) && std::cin.eof()) {
 			std::cout << "Invalid / Inválido." << std::endl;
 			exit(1);
-		}
-		else if (std::cin.fail()) {
+		} else if (std::cin.fail()) {
 			std::cout << "Fail / Fallo." << std::endl;
 			std::cin.clear();
+			exit (1);
+		}
+		input = trimString(input);
+		if (!input.empty()) {
+				return (input);
+		}
+		else {
+			std::cout << "Empty / Vacía." << std::endl;
+			continue;
 		}
 	}
 }
