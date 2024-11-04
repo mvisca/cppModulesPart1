@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef GLOBAL_HEAD_HPP
 # define GLOBAL_HEAD_HPP
 

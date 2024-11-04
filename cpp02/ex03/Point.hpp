@@ -1,3 +1,4 @@
+#pragma once
 #ifndef POINT_HPP
 #define POINT_HPP
 
