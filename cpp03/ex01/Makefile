@@ -19,6 +19,7 @@ $(TARGET): $(OBJS)
 
 %.o: %.cpp Makefile
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+-include $(DEPS)
 
 clean:
 	rm -f $(OBJS) $(DEPS)
