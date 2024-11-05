@@ -24,7 +24,6 @@ class WrongAnimal {
 		virtual ~WrongAnimal();
 		//~WrongAnimal();
 
-
 		//----- Member function -----//
 		void makeSound(void) const;
 
