@@ -1,19 +1,31 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
-#include <iostream>
-#include <string>
 
 //----- Constructor -----// 
 Dog::Dog() : Animal() {
     _type = "Dog";
-	std::cout << "Constructor de Dog llamado." << std::endl; 
+	std::cout << "Constructor default de Dog llamado." << std::endl; 
 }
 
-void Dog::makeSound(void) const {
-    std::cout << "Dog🐶: ¡Guau guau!" << std::endl;
+Dog::Dog(const Dog& other) : Animal(other) {
+	std::cout << "Constructor por copia de Dog llamado." << std::endl;
+}
+
+//----- Assign operator -----//
+Dog& Dog::operator=(const Dog& other) {
+    if (this != &other) {
+        Animal::operator=(other);
+    }
+    std::cout << "Operador de asignación ('=') de Dog llamado." << std::endl;
+    return *this;
 }
 
 //----- Destructor -----//
 Dog::~Dog() {
 	std::cout << "Destructor de Dog llamado." << std::endl; 
+}
+
+//----- Member function -----//
+void Dog::makeSound(void) const {
+    std::cout << "Dog🐶: ¡Guau guau!" << std::endl;
 }

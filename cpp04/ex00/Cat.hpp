@@ -3,8 +3,6 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
-#include <iostream>
-#include <string>
 
 class Cat : public Animal {
 
@@ -12,12 +10,17 @@ class Cat : public Animal {
 
 		//----- Constructor -----//
 		Cat();
+		Cat(const Cat& other);
 
+		//----- Assign operator -----//
+		Cat& operator=(const Cat& other);
+
+		//----- Destructor -----//
+		~Cat();
+		
 		//----- Member function -----//
 		void makeSound(void) const;
 	
-		//----- Destructor -----//
-		~Cat();
 };
 
 #endif

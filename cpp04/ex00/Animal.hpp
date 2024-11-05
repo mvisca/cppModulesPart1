@@ -10,6 +10,13 @@ class Animal {
 	public:
 		//----- Constructor -----//
 		Animal();
+		Animal(const Animal& other);
+
+		//----- Assign operator -----//
+		Animal& operator=(const Animal& other);
+
+		//----- Destructor -----//
+		virtual ~Animal();
 
 		//----- Member function -----//
 		virtual void makeSound(void) const;
@@ -17,8 +24,6 @@ class Animal {
 		//-----Getter -----//
 		std::string getType(void) const;
 
-		//----- Destructor -----//
-		virtual ~Animal();
 
 	protected:
 		//----- Member -----//

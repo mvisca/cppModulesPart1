@@ -3,8 +3,6 @@
 #define DOG_HPP
 
 #include "Animal.hpp"
-#include <iostream>
-#include <string>
 
 class Dog : public Animal {
 
@@ -12,12 +10,16 @@ class Dog : public Animal {
 
 		//----- Constructor -----//
 		Dog();
+		Dog(const Dog& other);
 
-		//----- Member function -----//
-		void makeSound(void) const;
+		//----- Assign operator -----//
+		Dog& operator=(const Dog& other);
 	
 		//----- Destructor -----//
 		~Dog();
+
+		//----- Member function -----//
+		void makeSound(void) const;
 };
 
 #endif

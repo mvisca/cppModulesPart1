@@ -3,21 +3,21 @@
 #define WRONGCAT_HPP
 
 #include "WrongAnimal.hpp"
-#include <iostream>
-#include <string>
 
 class WrongCat : public WrongAnimal {
 
     public:
     //----- Constructor -----//
     WrongCat();
+    WrongCat(const WrongCat& other);
 
-    //----- Member function -----//
-    void makeSound(void) const;
-	
+    WrongCat& operator=(const WrongCat& other);
+
     //----- Destructor -----//
     ~WrongCat();
 
+    //----- Member function -----//
+    void makeSound(void) const;
 };
 
 #endif
