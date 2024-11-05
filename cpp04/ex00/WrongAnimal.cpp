@@ -21,4 +21,3 @@ std::string WrongAnimal::getType(void) const {
 WrongAnimal::~WrongAnimal() {
 	std::cout << "Destructor de WrongAnimal llamado." << std::endl; 
 }
-
