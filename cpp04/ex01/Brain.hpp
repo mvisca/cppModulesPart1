@@ -29,6 +29,6 @@ class Brain {
 
 		//----- Setter -----/
 		void setIdea(int i, const std::string idea);
-}
+};
 
 #endif

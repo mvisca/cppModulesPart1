@@ -3,6 +3,7 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
 
@@ -20,7 +21,11 @@ class Cat : public Animal {
 		
 		//----- Member function -----//
 		void makeSound(void) const;
-	
+
+	private:
+		//----- Member _____//
+		Brain _brain;
+
 };
 
 #endif

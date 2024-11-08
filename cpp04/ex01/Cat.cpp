@@ -1,12 +1,13 @@
 #include "Cat.hpp"
+#include "Brain.hpp"
 
 //----- Constructor -----// 
-Cat::Cat() : Animal() {
+Cat::Cat() : Animal(), _brain() {
     _type = "Cat";
 	std::cout << "Constructor default de Cat llamado." << std::endl; 
 }
 
-Cat::Cat(const Cat& other) : Animal(other) {
+Cat::Cat(const Cat& other) : Animal(other), _brain(other._brain) {
     std::cout << "Constructor por copia de Cat llamado." << std::endl;
 }
 
@@ -14,6 +15,7 @@ Cat::Cat(const Cat& other) : Animal(other) {
 Cat& Cat::operator=(const Cat& other) {
     if (this != &other) {
         Animal::operator=(other);
+	_brain = other._brain;
     }
     std::cout << "Operador de asignación de Cat llamado." << std::endl;
     return *this;
