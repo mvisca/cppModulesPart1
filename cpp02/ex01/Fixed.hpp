@@ -17,7 +17,10 @@ class Fixed {
 		// Constructor de copia
 		Fixed(const Fixed& other);
 
-		// Constructor con parámetro
+		// Constructor con parámetro int
+		Fixed(int input);
+
+		// Constructor con parámetro float
 		Fixed(float input);
 
 		// Operador de asignación por copia
@@ -30,7 +33,7 @@ class Fixed {
 		int getRawBits(void) const;
 
 		// Setter del valor crudo
-		void setRawBits(int const raw);
+		void setRawBits(const int raw);
 
 		// Convertir a float
 		float toFloat(void) const;
