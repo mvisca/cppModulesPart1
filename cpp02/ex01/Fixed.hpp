@@ -26,8 +26,15 @@ class Fixed {
 		// Operador de asignación por copia
 		Fixed& operator=(const Fixed& other);
 
+
 		// Destructor
 		~Fixed();
+
+		// Convertir a float
+		float toFloat(void) const;
+
+		// Convertir a int
+		int toInt(void) const;
 
 		// Getter del valor crudo
 		int getRawBits(void) const;
@@ -35,13 +42,9 @@ class Fixed {
 		// Setter del valor crudo
 		void setRawBits(const int raw);
 
-		// Convertir a float
-		float toFloat(void) const;
-
-		// Convertir a int
-		int toInt(void) const;
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+	// Operador de inserción
+	std::ostream& operator<<(std::ostream& outputStream, const Fixed& fixed);
 
 #endif
