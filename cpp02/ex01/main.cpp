@@ -32,7 +32,7 @@ int main() {
 
     std::cout << "----------" << std::endl;
 
-    std::cout << "Asignando 22.22f a c:" << std::endl;
+    std::cout << "Asignando 17.71f a c:" << std::endl;
     c = Fixed(17.71f);
     std::cout << "Fixed c después de la asignación: " << c << std::endl;
 
