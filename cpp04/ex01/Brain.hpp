@@ -7,8 +7,8 @@
 
 class Brain {
 	private:
-		//----- Empty string for index out of range (0..99) -----//
-		static const std::string empty;
+		// //----- Empty string for index out of range (0..99) -----//
+		// static const std::string empty;
 
 		//----- Member variable -----//
 		std::string _ideas[100];

@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 
 //----- Constructor -----//
-Animal::Animal() : _type("Gaira") {
+Animal::Animal() : _type("defaultType") {
 	std::cout << "Construtor default de Animal llamado." << std::endl; 
 }
 

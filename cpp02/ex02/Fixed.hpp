@@ -24,10 +24,10 @@ class Fixed {
 		Fixed& operator=(const Fixed& other);
 
 		// Operadores de comparación
-		bool operator<(const Fixed& other) const;
 		bool operator>(const Fixed& other) const;
-		bool operator<=(const Fixed& other) const;
+		bool operator<(const Fixed& other) const;
 		bool operator>=(const Fixed& other) const;
+		bool operator<=(const Fixed& other) const;
 		bool operator==(const Fixed& other) const;
 		bool operator!=(const Fixed& other) const;
 

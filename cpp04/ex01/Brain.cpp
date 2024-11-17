@@ -1,8 +1,5 @@
 #include "Brain.hpp"
 
-//----- Estática para retorno de _idea fuera de rango -----//
-const std::string Brain::empty = "";
-
 //----- Constructor -----/
 Brain::Brain() {
 	for (int i = 0; i < 100; i++) {
@@ -38,7 +35,7 @@ const std::string& Brain::getIdea(int i) const {
 	if (i >= 0 && i < 100) {
 		return _ideas[i];
 	}
-	return Brain::empty;
+	return _ideas[0];
 }
 
 //----- Setter -----/
@@ -47,3 +44,6 @@ void Brain::setIdea(int i, std::string idea) {
 		_ideas[i] = idea;
 	}	
 }
+
+// //----- Estática para retorno de _idea fuera de rango -----//
+// const std::string Brain::empty = "";

@@ -41,12 +41,12 @@ Fixed::~Fixed() {
 
 // Convertir punto fijo a float
 float Fixed::toFloat(void) const {
-	return (float)this->_fixedPointValue / (1 << _fractionalBits);
+	return (float)_fixedPointValue / (1 << _fractionalBits);
 }
 
 // Convertir punto fijo a int
 int Fixed::toInt(void) const {
-	return this->_fixedPointValue >> _fractionalBits;
+	return _fixedPointValue >> _fractionalBits;
 }
 
 // Gettea el valor crudo del número de punto fijo

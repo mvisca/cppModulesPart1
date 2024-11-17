@@ -7,6 +7,10 @@
 
 class Animal {
 
+	protected:
+		//----- Member -----//
+		std::string _type;
+
 	public:
 		//----- Constructor -----//
 		Animal();
@@ -24,10 +28,6 @@ class Animal {
 		//-----Getter -----//
 		std::string getType(void) const;
 
-
-	protected:
-		//----- Member -----//
-		std::string _type;
 };
 
 #endif
