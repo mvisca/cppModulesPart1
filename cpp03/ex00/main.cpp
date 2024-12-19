@@ -11,9 +11,11 @@
 
 int main() {
     // Inicialización de los ClapTraps
-    ClapTrap claptrap1("Fighter1", 10, 10, 3);
+    ClapTrap claptrap0;
+    ClapTrap claptrap1base("Fighter1", 10, 10, 3);
+    ClapTrap claptrap1(claptrap1base); // Creación de claptrap3 como copia de claptrap1
     ClapTrap claptrap2("Fighter2", 10, 10, 5);
-    ClapTrap claptrap3(claptrap1); // Creación de claptrap3 como copia de claptrap1
+    ClapTrap claptrap3("Fighter3", 10, 10, 8);
 
     int attack1 = 3;
     int attack2 = 5;
