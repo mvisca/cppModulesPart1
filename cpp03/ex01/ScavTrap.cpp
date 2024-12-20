@@ -1,10 +1,27 @@
-#include <iostream>
-#include <string>
 #include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20) {
-	std::cout << "Constructor con parámetro 'name' de ScavTrap llamado." << std::endl;
+ScavTrap::ScavTrap() : ClapTrap("default", 100, 50, 20) {
+	std::cout << "Constructor default de ScavTrap llamado." << std::endl;
+}
+
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name, 100, 50, 20) {
+	std::cout << "Constructor con parámetro 'name' = " << getName() << " de ScavTrap llamado." << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other.getName(), other.getLife(), other.getEnergy(), other.getAttack()) {
+	std::cout << "Constructor con parámetro 'name' = " << getName() << " de ScavTrap llamado." << std::endl;
+}
+
+ScavTrap& ScavTrap:: operator = (const ScavTrap& other){
+	if (this != &other)
+	{
+		setName(other.getName());
+		setLife(other.getLife());
+		setEnergy(other.getEnergy());
+		setAttack(other.getAttack());
+	}
+	std::cout << "Operador de asignación de ScavTrap llamado." << std::endl;
+	return (*this);
 }
 
 //------- FUNCTIONS -------//
