@@ -1,5 +1,4 @@
 #include "ClapTrap.hpp"
-#include <iostream>
 
 //------- CONSTRUCTORS -------//
 ClapTrap::ClapTrap() : _name("noName"), _life(10), _energy(10), _attack(0) {
@@ -26,39 +25,6 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 	_energy = other._energy;
 	_attack = other._attack;
 	return *this;
-}
-
-//------- GETTERS Y SETTERS -------//
-std::string& ClapTrap::getName(void) {
-	return _name;
-}
-
-int ClapTrap::getAttack(void) {
-	return _attack;
-}
-
-int ClapTrap::getEnergy(void) {
-	return _energy;
-}
-
-int ClapTrap::getLife(void) {
-	return _life;
-}
-
-void ClapTrap::setName(std::string name) {
-	_name = name;
-}
-
-void ClapTrap::setAttack(int amount) {
-	_attack = amount;
-}
-
-void ClapTrap::setEnergy(int amount) {
-	_energy = amount;
-}
-
-void ClapTrap::setLife(int amount) {
-	_life = amount;
 }
 
 //------- FUNCTIONS -------//
@@ -106,4 +72,38 @@ void ClapTrap::beRepaired(unsigned int amount) {
 //------- DESTRUCTOR -------//
 ClapTrap::~ClapTrap() { 
 	std::cout << "Destructor de ClapTrap llamado para " << ClapTrap::getName() << "." << std::endl;
+}
+
+// EX01
+//------- GETTERS Y SETTERS -------//
+std::string ClapTrap::getName(void) const {
+	return _name;
+}
+
+int ClapTrap::getAttack(void) const {
+	return _attack;
+}
+
+int ClapTrap::getEnergy(void) const {
+	return _energy;
+}
+
+int ClapTrap::getLife(void) const {
+	return _life;
+}
+
+void ClapTrap::setName(std::string name) {
+	_name = name;
+}
+
+void ClapTrap::setAttack(int amount) {
+	_attack = amount;
+}
+
+void ClapTrap::setEnergy(int amount) {
+	_energy = amount;
+}
+
+void ClapTrap::setLife(int amount) {
+	_life = amount;
 }

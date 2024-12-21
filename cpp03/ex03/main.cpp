@@ -16,12 +16,21 @@ bool isAlive(ClapTrap& character) {
 
 int main() {
     // Inicializamos los personajes
+    std::cout << "Crea DiamondTrap" << std::endl;
     DiamondTrap diamond("DIAMONDER");
+    std::cout << std::endl;
+
+    std::cout << "Crea FragTrap" << std::endl;
     FragTrap frag("FRAGER");
+    std::cout << std::endl;
+
+    std::cout << "Crea ScavTrap" << std::endl;
     ScavTrap scav("SCAVER");
+    std::cout << std::endl;
 
     std::cout << "\n--- ¿Quién es DIAMONDER? ---" << std::endl;
     diamond.whoAmI();
+    std::cout << std::endl;
 
     // Punteros a los personajes para facilitar el acceso en un orden cíclico
     ClapTrap* fighters[3] = { &diamond, &frag, &scav };
