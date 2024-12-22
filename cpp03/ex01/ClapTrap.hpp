@@ -32,7 +32,7 @@ public:
 	~ClapTrap();
 
 	//------- GETTERS AND SETTERS -------//
-	std::string getName(void) const;
+	const std::string getName(void) const;
 	int getAttack(void) const;
 	int getEnergy(void) const;
 	int getLife(void) const;

@@ -2,6 +2,8 @@
 #ifndef FRAGTRAP_HPP
 #define FRAGTRAP_HPP
 
+#include <iostream>
+#include <string>
 #include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap {
@@ -9,6 +11,7 @@ class FragTrap : virtual public ClapTrap {
 		//------- CONSTRUCTOR -------//
 		FragTrap();
 		FragTrap(const std::string& name);
+		FragTrap(const FragTrap& other);
 
 		//------- FUNCTIONS -------//
 		void attack(const std::string& target);
@@ -16,16 +19,6 @@ class FragTrap : virtual public ClapTrap {
 
 		//------- DESTRUCTOR -------//
 		~FragTrap();
-
-		//------- GETTERS AND SETTERS -------//
-		std::string getName(void) const;
-		int getAttack(void) const;
-		int getEnergy(void) const;
-		int getLife(void) const;
-		void setName(std::string name);
-		void setAttack(int amount);
-		void setEnergy(int amount);
-		void setLife(int amount);
 };
 
 #endif

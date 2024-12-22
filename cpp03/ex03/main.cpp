@@ -1,7 +1,4 @@
-#include <iostream>
 #include "DiamondTrap.hpp"
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
 
 // Colores ANSI
 #define RESET "\033[0m"
@@ -13,9 +10,18 @@
 bool isAlive(ClapTrap& character) {
     return character.getLife() > 0;
 }
-
+ 
 int main() {
-    // Inicializamos los personajes
+
+/*FragTrap fdef(¨fdef, 100, 100, 50);
+    DiamondTrap* d_fdef;
+    d_fdef = &fdef;
+*/
+    DiamondTrap ddef;
+    ddef.whoAmI();
+
+
+    /*// Inicializamos los personajes
     std::cout << "Crea DiamondTrap" << std::endl;
     DiamondTrap diamond("DIAMONDER");
     std::cout << std::endl;
@@ -86,6 +92,6 @@ int main() {
             else if (fighters[i] == &scav) std::cout << GREEN << scav.getName() << " es el ganador!" << RESET << std::endl;
         }
     }
-
+*/
     return 0;
 }

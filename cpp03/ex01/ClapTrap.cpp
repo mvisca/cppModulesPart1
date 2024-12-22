@@ -1,24 +1,45 @@
 #include "ClapTrap.hpp"
 
 //------- CONSTRUCTORS -------//
-ClapTrap::ClapTrap() : _name("noName"), _life(10), _energy(10), _attack(0) {
+ClapTrap::ClapTrap()
+	: _name("noName"),
+	  _life(10),
+	  _energy(10),
+	  _attack(0)
+{
 	std::cout << "Constructor por defecto de ClapTrap llamado." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name ) : _name(name), _life(10), _energy(10), _attack(0) {
+ClapTrap::ClapTrap(const std::string name )
+	: _name(name),
+	_life(10),
+	_energy(10),
+	_attack(0)
+{
 	std::cout << "Constructor con parámetro nombre de ClapTrap llamado." << std::endl;
  }
 
-ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _life(other._life), _energy(other._energy), _attack(other._attack) {
+ClapTrap::ClapTrap(const ClapTrap &other)
+	: _name(other._name),
+	  _life(other._life),
+	  _energy(other._energy),
+	  _attack(other._attack)
+{
 	std::cout << "Constructor de copia de ClapTrap llamado." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name, int life, int energy, int attack) : _name(name), _life(life), _energy(energy), _attack(attack) {
+ClapTrap::ClapTrap(const std::string &name, int life, int energy, int attack)
+	: _name(name),
+	  _life(life),
+	  _energy(energy),
+	  _attack(attack)
+{
 	std::cout << "Constructor con parámetros de ClapTrap llamado." << std::endl;
 }
 
 //------- ASSIGN OPERATOR -------//
-ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
+ClapTrap& ClapTrap::operator=(const ClapTrap &other)
+{
 	std::cout << "Operador de asignación de ClapTrap llamado." << std::endl;
 	_name = other._name;
 	_life = other._life;
@@ -76,34 +97,11 @@ ClapTrap::~ClapTrap() {
 
 // EX01
 //------- GETTERS Y SETTERS -------//
-std::string ClapTrap::getName(void) const {
-	return _name;
-}
-
-int ClapTrap::getAttack(void) const {
-	return _attack;
-}
-
-int ClapTrap::getEnergy(void) const {
-	return _energy;
-}
-
-int ClapTrap::getLife(void) const {
-	return _life;
-}
-
-void ClapTrap::setName(std::string name) {
-	_name = name;
-}
-
-void ClapTrap::setAttack(int amount) {
-	_attack = amount;
-}
-
-void ClapTrap::setEnergy(int amount) {
-	_energy = amount;
-}
-
-void ClapTrap::setLife(int amount) {
-	_life = amount;
-}
+const std::string ClapTrap::getName(void) const {return _name;}
+int ClapTrap::getAttack(void) const {return _attack;}
+int ClapTrap::getEnergy(void) const {return _energy;}
+int ClapTrap::getLife(void) const {return _life;}
+void ClapTrap::setName(std::string name) {_name = name;}
+void ClapTrap::setAttack(int amount) {_attack = amount;}
+void ClapTrap::setEnergy(int amount) {_energy = amount;}
+void ClapTrap::setLife(int amount) {_life = amount;}

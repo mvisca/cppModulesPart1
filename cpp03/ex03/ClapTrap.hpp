@@ -7,13 +7,8 @@
 
 class ClapTrap {
 
-private:
-	std::string _name;
-	int _life;
-	int _energy;
-	int _attack;
-
 public:
+
 	//------- CONSTRUCTOR -------//
 	ClapTrap();
 	ClapTrap(const std::string name);
@@ -21,7 +16,17 @@ public:
 	ClapTrap(const std::string &name, int life, int energy, int attack);
 
 	//------- ASSIGN OPERATOR -------//
-	ClapTrap& operator= (const ClapTrap &other);
+	ClapTrap &operator=(const ClapTrap &other);
+
+	//------- GETTERS AND SETTERS -------//
+	const std::string& getName(void) const;
+	int getAttack(void) const;
+	int getEnergy(void) const;
+	int getLife(void) const;
+	void setName(std::string name);
+	void setAttack(int amount);
+	void setEnergy(int amount);
+	void setLife(int amount);
 
 	//------- FUNCTIONS -------//
 	void attack(const std::string target);
@@ -31,15 +36,12 @@ public:
 	//------- DESTRUCTOR -------//
 	~ClapTrap();
 
-	//------- GETTERS AND SETTERS -------//
-	std::string getName(void) const;
-	int getAttack(void) const;
-	int getEnergy(void) const;
-	int getLife(void) const;
-	void setName(std::string name);
-	void setAttack(int amount);
-	void setEnergy(int amount);
-	void setLife(int amount);
+private:
+
+	std::string _name;
+	int _life;
+	int _energy;
+	int _attack;
 };
 
 #endif

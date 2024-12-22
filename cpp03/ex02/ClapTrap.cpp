@@ -29,19 +29,19 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
 }
 
 //------- GETTERS Y SETTERS -------//
-std::string& ClapTrap::getName(void) {
+const std::string& ClapTrap::getName(void) const {
 	return _name;
 }
 
-int ClapTrap::getAttack(void) {
+int ClapTrap::getAttack(void) const {
 	return _attack;
 }
 
-int ClapTrap::getEnergy(void) {
+int ClapTrap::getEnergy(void) const {
 	return _energy;
 }
 
-int ClapTrap::getLife(void) {
+int ClapTrap::getLife(void) const {
 	return _life;
 }
 

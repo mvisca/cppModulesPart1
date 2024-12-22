@@ -19,10 +19,10 @@ public:
 	ClapTrap &operator=(const ClapTrap &other);
 
 	//------- GETTERS AND SETTERS -------//
-	std::string& getName(void);
-	int getAttack(void);
-	int getEnergy(void);
-	int getLife(void);
+	const std::string& getName(void) const;
+	int getAttack(void) const;
+	int getEnergy(void) const;
+	int getLife(void) const;
 	void setName(std::string name);
 	void setAttack(int amount);
 	void setEnergy(int amount);
