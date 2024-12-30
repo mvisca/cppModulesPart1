@@ -101,5 +101,5 @@ void ClapTrap::beRepaired(unsigned int amount) {
 
 //------- DESTRUCTOR -------//
 ClapTrap::~ClapTrap() { 
-	std::cout << "Destructor de ClapTrap llamado para " << ClapTrap::getName() << "." << std::endl;
+	std::cout << "Destructor de ClapTrap llamado para " << _name << "." << std::endl;
 }

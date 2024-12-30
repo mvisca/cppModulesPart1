@@ -3,9 +3,9 @@
 //------- CONSTRUCTORS -------//
 // Default
 DiamondTrap::DiamondTrap()
-	: ClapTrap("default_clap_name", 100, 50, 30),
-	  ScavTrap("default"),
-	  FragTrap("default"),
+	: ClapTrap("default_clap_name"),
+	  ScavTrap("default_clap_name"),
+	  FragTrap("defa_clap_nameult"),
 	  _name("default")
 {
 	this->setLife(FragTrap::getLife());
@@ -34,7 +34,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other)
 	: ClapTrap(other),
 	  ScavTrap(other),
 	  FragTrap(other),
-	  _name(other._name);
+	  _name(other._name)
 {
 	std::cout << "Constructor por copia de DiamondTrap llamado." << std::endl;
 }
@@ -61,12 +61,14 @@ std::string& DiamondTrap::getName() {
 		
 //------- FUNCTIONS -------//
 void DiamondTrap::whoAmI() {
+	std::cout << std::endl;
 	std::cout << "DiamondTrap whoAmI llamado:" << std::endl;
 	std::cout << "DiamondTrap _name -> " << getName() << std::endl;
 	std::cout << "ClapTrap _name -> " << ClapTrap::getName() << std::endl;
 	std::cout << "_life -> " << FragTrap::getLife() << std::endl;
 	std::cout << "_energy -> " << ScavTrap::getEnergy() << std::endl;
 	std::cout << "_attack -> " << FragTrap::getAttack() << std::endl;
+	std::cout << std::endl;
 }
 
 //------- DESTRUCTOR -------//

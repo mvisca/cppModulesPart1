@@ -17,17 +17,11 @@ FragTrap::FragTrap(const std::string& name)
 }
 
 // Copia
-FragTrap::FragTrap(const FragTrap& other)
+FragTrap::FragTrap(const FragTrap& other) 
+	: ClapTrap(other)
 {
-	if (this != &other)
-	{
-		setName(other.getName());
-		setLife(other.getLife());
-		setEnergy(other.getEnergy());
-		setAttack(other.getAttack());
-		std::cout << "Constructor por copia de FragTrap llamado." << std::endl;
-
-	}
+	*this = other;
+	std::cout << "Constructor por copia de FragTrap llamado." << std::endl;
 }
 
 //------- FUNCTIONS -------//
