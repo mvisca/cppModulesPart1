@@ -1,48 +1,116 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 17:05:48 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/30 18:38:46 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("default", 100, 50, 20) {
-	std::cout << "Constructor default de ScavTrap llamado." << std::endl;
+ScavTrap::ScavTrap(void)
+    : ClapTrap()
+{
+    setLife(100);
+    setEner(50);
+    setAtta(20);
+    std::cout << "+ ScavTrap default created." << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name, 100, 50, 20) {
-	std::cout << "Constructor con parámetro 'name' = " << getName() << " de ScavTrap llamado." << std::endl;
+ScavTrap::ScavTrap(const std::string& name)
+    : ClapTrap(name)
+{
+    setLife(100);
+    setEner(50);
+    setAtta(20);
+    std::cout << "+ ScavTrap param(\"" << name << "\") created." << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other.getName(), other.getLife(), other.getEnergy(), other.getAttack()) {
-	std::cout << "Constructor con parámetro 'name' = " << getName() << " de ScavTrap llamado." << std::endl;
+ScavTrap::ScavTrap(const ScavTrap& other)
+    : ClapTrap(other)
+{
+    std::cout << "+ ScavTrap param(ScavTrap::\"" << getName() << "\") created." << std::endl;
 }
 
-ScavTrap& ScavTrap:: operator = (const ScavTrap& other){
-	if (this != &other)
-	{
-		setName(other.getName());
-		setLife(other.getLife());
-		setEnergy(other.getEnergy());
-		setAttack(other.getAttack());
-	}
-	std::cout << "Operador de asignación de ScavTrap llamado." << std::endl;
-	return (*this);
+ScavTrap::~ScavTrap(void)
+{
+	std::cout << "- ScavTrap destructor called." << std::endl;
 }
 
-//------- FUNCTIONS -------//
-void ScavTrap::attack(const std::string& target) {
-	if (getEnergy() < 1)
-	{
-		std::cout << "ScavTrap " << getName() << " no tiene suficiente energía para atacar." << std::endl;
-		return;
-	} else if (getLife() < 1) {
-		std::cout << "ScavTrap " << getName() << " no puede atacar porque ha sido derrotado." << std::endl;
-		return;
-	}
-	std::cout << "ScavTrap " << getName() << " ataca a " << target << ", causando " << getAttack() << " puntos de daño!" << std::endl;
-	int temp = getEnergy();
-	setEnergy(temp - 1);
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+    if (&other != this)
+    {
+        setLife(other.getLife());
+        setEner(other.getEner());
+        setAtta(other.getAtta());
+        setName(other.getName());
+        std::cout << "+ ScavTrap assign operator called." << std::endl;
+    }
+    return *this;
 }
 
-void ScavTrap::guardGate(void) {
-     std::cout << "¡ScavTrap " << getName() << " ha activado el modo Gatekeeper!" << std::endl;
+void ScavTrap::attack(const std::string& target)
+{
+    if (getEner() > 0)
+    {
+        setEner(getEner() - 1);
+        std::cout << "* ScavTrap "<< getName() << " attacks " << target << " causing " << getAtta() << " points of damage." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ScavTrap "<< getName() << " cannot attack " << target << " because is out of energy." << std::endl;
+    }
 }
 
-ScavTrap::~ScavTrap() {
-	std::cout << "Destructor de ScavTrap llamado para " << getName() << "." << std::endl;
+void ScavTrap::takeDamage(unsigned int amount)
+{
+    if (getLife() > 0 && getLife() <= amount)
+    {
+        setLife(0);
+        std::cout << "* ScavTrap "<< getName() << " gets " << amount << " points of damages and is out of life." << std::endl;
+    }
+    else if (getLife() != 0)
+    {
+        setLife(getLife() - amount);
+        std::cout << "* ScavTrap "<< getName() << " gets " << amount << " points of damages and now has " << getLife() << " points of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ScavTrap "<< getName() << " cannot be repaired attacked because is already out of life." << std::endl;
+    }
+}
+
+void ScavTrap::beRepaired(unsigned int amount)
+{
+    if (getEner() > 0 && getLife() > 0)
+    {
+        setEner(getEner() - 1);
+        setLife(getLife() + amount);
+        std::cout << "* ScavTrap "<< getName() << " gets repaired by " << amount << " points of life." << std::endl;
+    }
+    else if (getLife() == 0)
+    {
+        std::cout << "* ScavTrap "<< getName() << " cannot be repaired because is already out of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ScavTrap "<< getName() << " cannot be repaired because is out of energy." << std::endl;
+    }
+}
+
+void ScavTrap::guardGate(void)
+{
+    if (getEner() > 0)
+    {
+    	std::cout << "! ScavTrap " << getName() << " switches to Guard Gate mode." << std::endl;    
+    }
+    else
+    {
+    	std::cout << "! ScavTrap " << getName() << " cannot enter Guard Gate mode because is out of energy." << std::endl;    
+    }
 }

@@ -1,26 +1,55 @@
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 15:05:19 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/30 18:23:21 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 
-#define RESET   "\033[0m"
-#define RED     "\033[31m"
-#define GREEN   "\033[32m"
-#define BLUE    "\033[34m"
-#define YELLOW  "\033[33m"
+int main(void)
+{
+    // Ex00
+    // ClapTrap first("First");
+    // std::cout << "Name: " << first.getName() << std::endl;
+    // ClapTrap second("Second");
+    // std::cout << "Name: " << second.getName() << std::endl;
+    // ClapTrap third("Third");
+    // third = second;
+    // std::cout << "Name: " << third.getName() << std::endl;
+    // first.beRepaired(10);
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.attack(second.getName());
+    // first.beRepaired(10);
+    // second.takeDamage(1);
+    // second.takeDamage(10);
 
-int main() {
-    std::cout << RED << "Creando ScavTrap rojo" << RESET << std::endl;
-    ScavTrap redScav("RedScav");
-    redScav.attack("enemy");
-    redScav.guardGate();
-
-    std::cout << GREEN << "\nCreando ScavTrap verde" << RESET << std::endl;
-    ScavTrap greenScav("GreenScav");
-    greenScav.attack("enemy");
-    greenScav.takeDamage(30);
-    greenScav.beRepaired(20);
-
-    std::cout << BLUE << "\nCreando ScavTrap azul" << RESET << std::endl;
-    ScavTrap blueScav("BlueScav");
-    blueScav.attack("enemy");
-    blueScav.takeDamage(110);
+    //Ex01
+    ScavTrap first("First");
+    std::cout << "Name: " << first.getName() << std::endl;
+    first.takeDamage(1);
+    first.attack("Dummy");
+    ScavTrap second(first);
+    second.setName("Second");
+    second.takeDamage(2);
+    second.guardGate();
+    ScavTrap third;
+    third = first;
+    third.setName("Third");
+    third.beRepaired(8);
+    third.takeDamage(1);
+    return 0;
 }

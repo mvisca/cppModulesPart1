@@ -1,77 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 21:03:47 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/31 15:23:32 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "DiamondTrap.hpp"
 
-//------- CONSTRUCTORS -------//
-// Default
-DiamondTrap::DiamondTrap()
-	: ClapTrap("default_clap_name"),
-	  ScavTrap("default_clap_name"),
-	  FragTrap("defa_clap_nameult"),
-	  _name("default")
+DiamondTrap::DiamondTrap(void)
+    : ClapTrap("nn_clap_name"),
+      ScavTrap(),
+      FragTrap()
 {
-	this->setLife(FragTrap::getLife());
-	FragTrap::setLife(FragTrap::getLife());
-	ScavTrap::setLife(FragTrap::getLife());
-	setEnergy(ScavTrap::getEnergy());
-	setAttack(FragTrap::getAttack());
-	std::cout << "Constructor default de DiamondTrap llamado." << std::endl;
+    _name = "nn_diamond_name";
+    _life = 100;
+    _ener = 50;
+    _atta = 30;
+    std::cout << "+ DiamondTrap default constructor called." << std::endl;
 }
 
-// Name
 DiamondTrap::DiamondTrap(const std::string& name)
-	: ClapTrap(name + "_clap_name"),
-	  ScavTrap(name),
-	  FragTrap(name),
-	  _name(name)
+    : ClapTrap(name + "_clap_name"),
+      ScavTrap(),
+      FragTrap(),
+      _name(name)
 {
-	setLife(FragTrap::getLife());
-	setEnergy(ScavTrap::getEnergy());
-	setAttack(FragTrap::getAttack());
-	std::cout << "Constructor con parámetro 'name' de DiamondTrap llamado." << std::endl;
+    _life = 100;
+    _ener = 50;
+    _atta = 30;
+    std::cout << "+ DiamondTrap param(\"" << _name << "\") constructor called." << std::endl;
 }
 
-// Copia
-DiamondTrap::DiamondTrap(const DiamondTrap& other)
-	: ClapTrap(other),
-	  ScavTrap(other),
-	  FragTrap(other),
-	  _name(other._name)
+DiamondTrap::~DiamondTrap(void)
 {
-	std::cout << "Constructor por copia de DiamondTrap llamado." << std::endl;
+    std::cout << "DiamondTrap destructor called." << std::endl;
 }
 
-//------- CONSTRUCTORS -------//
-DiamondTrap& DiamondTrap::operator = (const DiamondTrap& other) {
-	if (this != &other)
-	{
-		ClapTrap::operator = (other);
-		ScavTrap::operator = (other);
-		FragTrap::operator = (other);
-		_name = other._name;
-		setLife(other.getLife());
-		setEnergy(other.getEnergy());
-		setAttack(other.getAttack());
-	}
-	return *this;
-}
-
-//------- GETTER -------//
-std::string& DiamondTrap::getName() {
-	return _name;
-}
-		
-//------- FUNCTIONS -------//
-void DiamondTrap::whoAmI() {
-	std::cout << std::endl;
-	std::cout << "DiamondTrap whoAmI llamado:" << std::endl;
-	std::cout << "DiamondTrap _name -> " << getName() << std::endl;
-	std::cout << "ClapTrap _name -> " << ClapTrap::getName() << std::endl;
-	std::cout << "_life -> " << FragTrap::getLife() << std::endl;
-	std::cout << "_energy -> " << ScavTrap::getEnergy() << std::endl;
-	std::cout << "_attack -> " << FragTrap::getAttack() << std::endl;
-	std::cout << std::endl;
-}
-
-//------- DESTRUCTOR -------//
-DiamondTrap::~DiamondTrap() {
-	std::cout << "Destructor de DiamondTrap llamado." << std::endl; 
+void DiamondTrap::whoAmI(void)
+{
+    std::cout << "Name " << _name << std::endl;
+    std::cout << "Clap Name " << ClapTrap::getName() << std::endl;
+    std::cout << "Life " << _life << std::endl;
+    std::cout << "Energy " << _ener << std::endl;
+    std::cout << "Attack " << _atta << std::endl;
 }

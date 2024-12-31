@@ -1,29 +1,41 @@
-#include <string>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 14:53:24 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/30 17:07:58 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
+#include <string>
 
-class ClapTrap {
+#pragma once
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
-private:
-	std::string _name;
-	int _life;
-	int _energy;
-	int _attack;
+class ClapTrap
+{
+    private:
+        std::string     _name;
+        unsigned int    _life;
+        unsigned int    _ener;
+        unsigned int    _atta;
+    public:
+        ClapTrap(void);
+        ClapTrap(const std::string& name);
+        ClapTrap(const ClapTrap& other);
+        ~ClapTrap(void);
+        ClapTrap& operator=(const ClapTrap& other);
 
-public:
+        void attack(const std::string& target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
 
-	//------- CONSTRUCTOR -------//
-	ClapTrap();
-	ClapTrap(const ClapTrap &other);
-	ClapTrap(const std::string &name, int life, int energy, int attack);
-
-	//------- ASSIGN OPERATOR -------//
-	ClapTrap &operator=(const ClapTrap &other);
-
-	//------- FUNCTIONS -------//
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
-
-	//------- DESTRUCTOR -------//
-	~ClapTrap();
+        const std::string getName(void);
 };
+
+#endif

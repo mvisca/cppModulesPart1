@@ -1,22 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 17:05:56 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/30 21:06:15 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
-#include <iostream>
-#include <string>
 #include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap {
-	public:
-		//------- CONSTRUCTOR -------//
-		ScavTrap(const std::string name);
+class ScavTrap : virtual public ClapTrap
+{
+    public:
+        ScavTrap(void);
+        ScavTrap(const std::string& name);
+        ScavTrap(const ScavTrap& other);
+        ~ScavTrap(void);
+        
+        ScavTrap& operator=(const ScavTrap& other);
 
-		//------- FUNCTIONS -------//
-		void attack(const std::string& target);
+        void attack(const std::string& target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
+        
 		void guardGate(void);
-
-		//------- DESTRUCTOR -------//
-		~ScavTrap();
 };
 
 #endif

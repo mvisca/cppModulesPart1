@@ -1,50 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 18:28:24 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/31 15:21:20 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
 
-//------- CONSTRUCTORS -------//
-FragTrap::FragTrap()
-	: ClapTrap()
+FragTrap::FragTrap(void)
+    : ClapTrap()
 {
-	setLife(100);
-	setEnergy(50);
-	setEnergy(30);
-	std::cout << "Constructor default de FragTrap llamado." << std::endl;
+    _life = 100;
+    _ener = 100;
+    _atta = 30;
+    std::cout << "+ FragTrap default created." << std::endl;
 }
 
 FragTrap::FragTrap(const std::string& name)
-	: ClapTrap(name, 100, 100, 30)
+    : ClapTrap(name)
 {
-	std::cout << "Constructor con parámetro 'name' de FragTrap llamado." << std::endl;
+    setLife(100);
+    setEner(100);
+    setAtta(30);
+    std::cout << "+ FragTrap param(\"" << name << "\") created." << std::endl;
 }
 
-// Copia
-FragTrap::FragTrap(const FragTrap& other) 
-	: ClapTrap(other)
+FragTrap::FragTrap(const FragTrap& other)
+    : ClapTrap(other)
 {
-	*this = other;
-	std::cout << "Constructor por copia de FragTrap llamado." << std::endl;
+    std::cout << "+ FragTrap param(FragTrap::\"" << getName() << "\") created." << std::endl;
 }
 
-//------- FUNCTIONS -------//
+FragTrap::~FragTrap(void)
+{
+	std::cout << "- FragTrap destructor called." << std::endl;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& other)
+{
+    if (&other != this)
+    {
+        setLife(other.getLife());
+        setEner(other.getEner());
+        setAtta(other.getAtta());
+        setName(other.getName());
+        std::cout << "+ FragTrap assign operator called." << std::endl;
+    }
+    return *this;
+}
+
 void FragTrap::attack(const std::string& target)
 {
-	if (getEnergy() < 1)
-	{
-		std::cout << "FragTrap " << getName() << " no tiene suficiente energía para atacar." << std::endl;
-		return;
-	} else if (getLife() < 1) {
-		std::cout << "FragTrap " << getName() << " no puede atacar porque ha sido derrotado." << std::endl;
-		return;
-	}
-	std::cout << "¡FragTrap " << getName() << " ataca a " << target << ", causando " << getAttack() << " puntos de daño!" << std::endl;
-	int temp = getEnergy();
-	setEnergy(temp - 1);
+    if (getEner() > 0)
+    {
+        setEner(getEner() - 1);
+        std::cout << "* FragTrap "<< getName() << " attacks " << target << " causing " << getAtta() << " points of damage." << std::endl;
+    }
+    else
+    {
+        std::cout << "* FragTrap "<< getName() << " cannot attack " << target << " because is out of energy." << std::endl;
+    }
 }
 
-void FragTrap::highFivesGuys(void) {
-     std::cout << "¡FragTrap " << getName() << " está pidiendo un High Five!" << std::endl;
+void FragTrap::takeDamage(unsigned int amount)
+{
+    if (getLife() > 0 && getLife() <= amount)
+    {
+        setLife(0);
+        std::cout << "* FragTrap "<< getName() << " gets " << amount << " points of damages and is out of life." << std::endl;
+    }
+    else if (getLife() != 0)
+    {
+        setLife(getLife() - amount);
+        std::cout << "* FragTrap "<< getName() << " gets " << amount << " points of damages and now has " << getLife() << " points of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* FragTrap "<< getName() << " cannot be repaired attacked because is already out of life." << std::endl;
+    }
 }
 
-//------- DESTRUCTOR -------//
-FragTrap::~FragTrap() {
-	std::cout << "Destructor de FragTrap llamado para " << getName() << "." << std::endl;
+
+void FragTrap::beRepaired(unsigned int amount)
+{
+    if (getEner() > 0 && getLife() > 0)
+    {
+        setEner(getEner() - 1);
+        setLife(getLife() + amount);
+        std::cout << "* FragTrap "<< getName() << " gets repaired by " << amount << " points of life." << std::endl;
+    }
+    else if (getLife() == 0)
+    {
+        std::cout << "* FragTrap "<< getName() << " cannot be repaired because is already out of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* FragTrap "<< getName() << " cannot be repaired because is out of energy." << std::endl;
+    }
+}
+
+void FragTrap::highFivesGuys(void)
+{
+    if (getEner() > 0)
+    {
+    	std::cout << "! FragTrap " << getName() << " says High Five Guys!" << std::endl;    
+    }
+    else
+    {
+    	std::cout << "! FragTrap " << getName() << " cannot say High Five Guys because is out of energy." << std::endl;    
+    }
 }

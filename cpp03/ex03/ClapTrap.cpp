@@ -1,105 +1,120 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 14:59:55 by mvisca            #+#    #+#             */
+/*   Updated: 2024/12/31 13:46:28 by mvisca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
-#include <iostream>
 
-//------- CONSTRUCTORS -------//
-ClapTrap::ClapTrap()
-	: _name("noName"),
-	  _life(10),
-	  _energy(10),_attack(0)
+ClapTrap::ClapTrap(void)
+: _name("clap_def"),
+  _life(10),
+  _ener(10),
+  _atta(0)
 {
-	std::cout << "Constructor por defecto de ClapTrap llamado." << std::endl;
+    // _name = "none";
+    // _life = 10;
+    // _ener = 10;
+    // _atta = 0;
+    std::cout << "+ ClapTrap default called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name )
-	: _name(name),
-	_life(10),
-	_energy(10),
-	_attack(0)
+ClapTrap::ClapTrap(const std::string& name)
+    : _name(name),
+      _life(10),
+      _ener(10),
+      _atta(0)
 {
-	std::cout << "Constructor con parámetro nombre de ClapTrap llamado." << std::endl;
- }
+    std::cout << "+ ClapTrap param(\"" << name << "\") constructor called." << std::endl;
+}
 
-ClapTrap::ClapTrap(const ClapTrap &other) :
-	_name(other._name),
-	_life(other._life),
-	_energy(other._energy),
-	_attack(other._attack)
+ClapTrap::ClapTrap(const ClapTrap& other)
+    : _name(other._name),
+      _life(other._life),
+      _ener(other._ener),
+      _atta(other._atta)
 {
-	std::cout << "Constructor de copia de ClapTrap llamado." << std::endl;
+    std::cout << "+ ClapTrap copy constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name, int life, int energy, int attack)
-	: _name(name),
-	  _life(life),
-	  _energy(energy),
-	  _attack(attack)
+ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Constructor con parámetros de ClapTrap llamado." << std::endl;
+    std::cout << "- ClapTrap destructor called." << std::endl;
 }
 
-//------- ASSIGN OPERATOR -------//
-ClapTrap& ClapTrap::operator=(const ClapTrap &other) {
-	std::cout << "Operador de asignación de ClapTrap llamado." << std::endl;
-	_name = other._name;
-	_life = other._life;
-	_energy = other._energy;
-	_attack = other._attack;
-	return *this;
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+    if (this != &other)
+    {
+        _name = other._name;
+        _life = other._life;
+        _ener = other._ener;
+        _atta = other._atta;
+        std::cout << "= ClapTrap assign operator called." << std::endl;
+    }
+    return *this;
 }
 
-//------- GETTERS Y SETTERS -------//
-const std::string& ClapTrap::getName(void) const {return _name;}
-int ClapTrap::getAttack(void) const {return _attack;}
-int ClapTrap::getEnergy(void) const {return _energy;}
-int ClapTrap::getLife(void) const {	return _life;}
-void ClapTrap::setName(std::string name) {_name = name;}
-void ClapTrap::setAttack(int amount) {_attack = amount;}
-void ClapTrap::setEnergy(int amount) {_energy = amount;}
-void ClapTrap::setLife(int amount) {_life = amount;}
-
-//------- FUNCTIONS -------//
-void ClapTrap::attack(const std::string target) {
-	if (_energy < 1)
-	{
-		std::cout << _name << " no tiene suficiente energía para atacar." << std::endl;
-		return;
-	} else if (_life < 1) {
-		std::cout << _name << " no puede atacar porque ha sido derrotado." << std::endl;
-		return;
-	}
-	std::cout << _name << " ataca a " << target << ", causando " << _attack << " puntos de daño!" << std::endl;
-	_energy -= 1;
+void ClapTrap::attack(const std::string& target)
+{
+    if (_ener > 0)
+    {
+        _ener -= 1;
+        std::cout << "* ClapTrap "<< _name << " attacks " << target << " causing " << _atta << " points of damage." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ClapTrap "<< _name << " cannot attack " << target << " because is out of energy." << std::endl;
+    }
 }
 
-void ClapTrap::takeDamage(unsigned int amount) {
-	if (_life < 1) {
-		std::cout << _name << " no puede recibir daño porque ha sido derrotado." << std::endl;
-		return;
-	}
-	_life -= amount;
-	std::cout << _name << " recibe daño por " << amount << " puntos de vida y queda en " << (_life < 1 ? 0 : _life) << "." << std::endl;
-	if (_life < 1) {
-		std::cout << _name << " ha sido derrotado." << std::endl;
-		_life = 0;
-	}
+void ClapTrap::takeDamage(unsigned int amount)
+{
+    if (_life > 0 && _life <= amount)
+    {
+        _life = 0;
+        std::cout << "* ClapTrap "<< _name << " gets " << amount << " points of damages and is out of life." << std::endl;
+    }
+    else if (_life != 0)
+    {
+        _life -= amount;
+        std::cout << "* ClapTrap "<< _name << " gets " << amount << " points of damages and now has " << _life << " points of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ClapTrap "<< _name << " cannot be repaired attacked because is already out of life." << std::endl;
+    }
 }
 
-void ClapTrap::beRepaired(unsigned int amount) {
-	if (_energy < 1)
-	{
-		std::cout << _name << " no tiene suficiente energía para repararse." << std::endl;
-		return;
-	} else if (_life < 1) {
-		std::cout << _name << " no puede repararse porque ha sido derrotado." << std::endl;
-		return;
-	}
-	_energy -= 1;
-	_life += amount;
-	std::cout << _name << " ha sido reparado en " << amount << " puntos y tiene ahora " << _life << " puntos de vida." << std::endl;
-
+void ClapTrap::beRepaired(unsigned int amount)
+{
+    if (_ener > 0 && _life > 0)
+    {
+        _ener -= 1;
+        _life += amount;
+        std::cout << "* ClapTrap "<< _name << " gets repaired by " << amount << " points of life." << std::endl;
+    }
+    else if (_life == 0)
+    {
+        std::cout << "* ClapTrap "<< _name << " cannot be repaired because is already out of life." << std::endl;
+    }
+    else
+    {
+        std::cout << "* ClapTrap "<< _name << " cannot be repaired because is out of energy." << std::endl;
+    }
 }
 
-//------- DESTRUCTOR -------//
-ClapTrap::~ClapTrap() { 
-	std::cout << "Destructor de ClapTrap llamado para " << _name << "." << std::endl;
-}
+const std::string ClapTrap::getName(void) const {return _name;}
+unsigned int ClapTrap::getLife(void) const {return _life;}
+unsigned int ClapTrap::getEner(void) const {return _ener;}
+unsigned int ClapTrap::getAtta(void) const {return _atta;}
+void ClapTrap::setName(const std::string& name) {_name = name;}
+void ClapTrap::setLife(unsigned int amount) {_life = amount;}
+void ClapTrap::setEner(unsigned int amount) {_ener = amount;}
+void ClapTrap::setAtta(unsigned int amount) {_atta = amount;}

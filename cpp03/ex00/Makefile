@@ -9,12 +9,12 @@ OBJS		:=	$(SRCS:.cpp=.o)
 
 DEPS		:=	$(OBJS:.o=.d)
 
-TARGET		:=	claptrap
+NAME		:=	claptrap
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.cpp Makefile
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -24,7 +24,7 @@ clean:
 	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re: fclean all
 
