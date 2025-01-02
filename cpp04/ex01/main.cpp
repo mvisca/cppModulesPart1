@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:59:35 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/02 14:04:06 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/02 14:19:02 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ int main()
         std::cout << "Destruyendo animals[" << i << "]" << std::endl;
         delete animals[i];
     }
+
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    j->makeSound();
+    i->makeSound();
+    delete j;
+    delete i;
 
     return 0;
 }
