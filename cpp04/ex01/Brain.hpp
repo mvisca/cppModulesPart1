@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 18:01:13 by mvisca            #+#    #+#             */
-/*   Updated: 2024/12/31 18:01:16 by mvisca           ###   ########.fr       */
+/*   Created: 2024/12/31 18:01:52 by mvisca            #+#    #+#             */
+/*   Updated: 2025/01/02 13:56:32 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-#include "WrongAnimal.hpp"
+#include <iostream>
+#include <string>
 
-class WrongCat : public WrongAnimal {
+class Brain
+{
+    private:
+        std::string _ideas[100];
 
     public:
-    //----- Constructor -----//
-    WrongCat();
-    WrongCat(const WrongCat& other);
+        Brain();
+        Brain(const Brain& brain);
+		~Brain();
 
-    //----- Destructor -----//
-    ~WrongCat();
+        Brain& operator=(const Brain& other);
 
-    WrongCat& operator=(const WrongCat& other);
-
-    //----- Member function -----//
-    void makeSound(void) const;
-
-    //----- Getter -----//
-    const std::string& getType(void) const; 
+        void setIdea(int index, const std::string idea);
+        std::string getIdea(int index) const;
 };
 
 #endif

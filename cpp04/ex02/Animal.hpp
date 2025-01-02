@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:06:07 by mvisca            #+#    #+#             */
-/*   Updated: 2024/12/31 17:28:09 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/02 13:42:23 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ class Animal {
 
 		//-----Getter -----//
 		std::string getType(void) const;
-
 };
 
 #endif
