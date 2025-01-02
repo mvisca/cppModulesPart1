@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:06:00 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/02 13:42:19 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/02 14:32:33 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ Animal& Animal::operator=(const Animal& other)
 	}
 	std::cout << "= Operador asignación Animal llamado." << std::endl;
 	return *this;
-}
-
-//----- Member function -----//
-void Animal::makeSound(void) const
-{
-	std::cout << "🐵: ¡Uhhh uhhh uhhh!" << std::endl;
 }
 
 //----- Getter -----//

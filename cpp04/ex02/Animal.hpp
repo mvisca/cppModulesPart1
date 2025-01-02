@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:06:07 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/02 13:42:23 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/02 14:32:02 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class Animal {
 	protected:
 		//----- Member -----//
 		std::string _type;
+		Animal();
 
 	public:
 		//----- Constructor -----//
-		Animal();
 		Animal(const Animal& other);
 		virtual ~Animal();
 
@@ -33,7 +33,7 @@ class Animal {
 		Animal& operator=(const Animal& other);
 
 		//----- Member function -----//
-		virtual void makeSound(void) const;
+		virtual void makeSound(void) const = 0;
 
 		//-----Getter -----//
 		std::string getType(void) const;
