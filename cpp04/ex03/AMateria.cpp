@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 17:15:55 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/02 18:26:47 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/05 23:13:11 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ AMateria::AMateria()
 }
 
 AMateria::AMateria(const AMateria& other)
+    : _type(other._type)
 {
-    *this = other;
     std::cout << "AMateria copia constructor llamado." << std::endl;
 }
 
@@ -28,6 +28,10 @@ AMateria::AMateria(const std::string& type)
     : _type(type)
 {
     std::cout << "AMateria param(\"" << type << "\") constructor llamado." << std::endl;
+}
+
+AMateria::~AMateria() {
+    std::cout << "AMateria destructor llamado." << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria& other)
@@ -40,14 +44,4 @@ AMateria& AMateria::operator=(const AMateria& other)
     return *this;
 }
 
-AMateria::~AMateria()
-{
-    std::cout << "AMateria destructor lamado." << std::endl;    
-}
-
 const std::string& AMateria::getType() const {return _type;}
-
-void AMateria::use(ICharacter& target)
-{
-    std::cout << "AMateria def use ICharacter llamado." << std::endl;   
-}

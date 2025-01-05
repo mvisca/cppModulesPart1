@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:29:02 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/02 20:22:13 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/05 23:26:20 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 class Character : public ICharacter
 {
     private:
         std::string _name;
         AMateria* _slots[4];
-        int _amCount;
+        AMateria* _unequiped[100]; 
         
     public:
         Character();
@@ -32,8 +33,6 @@ class Character : public ICharacter
         Character& operator=(const Character& other);
         
         const std::string& getName() const;
-        const AMateria* getAM(int i) const;
-        int Character::getAMCount() const;
         
         void equip(AMateria* m);
         void unequip(int idx);

@@ -6,7 +6,7 @@
 #    By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/31 17:59:51 by mvisca            #+#    #+#              #
-#    Updated: 2025/01/02 18:22:32 by mvisca           ###   ########.fr        #
+#    Updated: 2025/01/04 15:04:29 by mvisca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,14 @@ SRCS		:=	main.cpp			\
 				AMateria.cpp		\
 				Ice.cpp				\
 				Cure.cpp			\
-				ICharacter.cpp
+				Character.cpp		\
+				MateriaSource.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
 DEPS		:=	$(OBJS:.o=.d)
 
-TARGET		:=	animalsWithBrain
+TARGET		:=	character
 
 all: $(TARGET)
 
