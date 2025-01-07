@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:00:00 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/05 23:16:40 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/07 13:07:55 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 Ice::Ice()
     : AMateria("ice")
 {
-    std::cout << "Ice AMateria def constructor llamado." << std::endl;
+    // std::cout << "+ Ice llama a constructor _type de AMateria." << std::endl;
 }
 
 Ice::Ice(const Ice& other)
     : AMateria(other)
 {
-    std::cout << "Ice AMateria copia constructor llamado." << std::endl;
+    // std::cout << "+ Ice llama a constructor &other de AMateria." << std::endl;
 }
 
 Ice::~Ice()
 {
-    std::cout << "Ice destructor llamado." << std::endl;  
+    // std::cout << "- Ice destructor llamado." << std::endl;
 }
 
 Ice& Ice::operator=(const Ice& other)
@@ -34,14 +34,15 @@ Ice& Ice::operator=(const Ice& other)
     if (this != &other)
     {
         AMateria::operator=(other);
-        std::cout << "Ice operador asignación llamado." << std::endl;
+        // std::cout << "= Ice operador asignación llamado." << std::endl;
     }
     return *this;
 }
 
 AMateria* Ice::clone() const
 {
-    return new Ice(*this); // Devuelve una copia profunda.
+    // std::cout << "! Clone Ice llamado." << std::endl;
+    return new Ice(*this);
 }
 
 

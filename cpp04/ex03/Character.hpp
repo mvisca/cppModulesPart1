@@ -6,7 +6,7 @@
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 19:29:02 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/05 23:26:20 by mvisca           ###   ########.fr       */
+/*   Updated: 2025/01/06 18:19:54 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class Character : public ICharacter
     private:
         std::string _name;
         AMateria* _slots[4];
-        AMateria* _unequiped[100]; 
         
     public:
         Character();

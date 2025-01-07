@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvisca <mvisca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/05 23:07:07 by mvisca            #+#    #+#             */
-/*   Updated: 2025/01/05 23:35:52 by mvisca           ###   ########.fr       */
+/*   Created: 2025/01/07 13:32:15 by mvisca            #+#    #+#             */
+/*   Updated: 2025/01/07 13:55:32 by mvisca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,158 +16,173 @@
 #include "Character.hpp"
 #include "MateriaSource.hpp"
 #include <iostream>
+#include <exception>
 
-// Prueba 1: Creación y Destrucción de Objetos
-void test_creation_and_destruction() {
-    std::cout << "\n--- PRUEBA 1: CREACIÓN Y DESTRUCCIÓN ---\n";
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
+// Prototipos de las pruebas
+void runSubjectTest();
+void runManualTest();
+void runAllFullTest();
+void runCharacterCopyTest();
+void runMateriaSourceLimitTest();
+void runDestructionOrderTest();
+void runStressTest();
 
-    ICharacter* character = new Character("Hero");
-
-    AMateria* ice = src->createMateria("ice");
-    AMateria* cure = src->createMateria("cure");
-
-    character->equip(ice);
-    character->equip(cure);
-
-    delete character;
-    delete src;
+void displayMenu()
+{
+    std::cout << "\n====== 🛠️ MENU DE PRUEBAS 🛠️ ======\n";
+    std::cout << "1. 🧪 Test del Subject\n";
+    std::cout << "2. 🛠️ Creación Manual de Materias y Characters\n";
+    std::cout << "3. 🧩 Prueba de Llenado de _all\n";
+    std::cout << "4. 🔄 Copia y Asignación de Character\n";
+    std::cout << "5. ⚔️ Comportamiento de MateriaSource con Slots Llenos\n";
+    std::cout << "6. 🧠 Destrucción en Orden Inesperado\n";
+    std::cout << "7. 💻 Stress Test\n";
+    std::cout << "0. 🚪 Salir\n";
+    std::cout << "=====================================\n";
+    std::cout << "Seleccione una opción: ";
 }
 
-// Prueba 2: Copia profunda
-void test_deep_copy() {
-    std::cout << "\n--- PRUEBA 2: COPIA PROFUNDA ---\n";
-    Character* original = new Character("Original");
-    original->equip(new Ice());
-    original->equip(new Cure());
-
-    Character* copy = new Character(*original); // Constructor de copia
-
-    original->unequip(0);
-    original->unequip(1);
-
-    delete original;
-    
-    copy->use(0, *copy);
-    copy->use(1, *copy);
-
-    delete copy;
-}
-
-// Prueba 3: Equipar y Desequipar Materias
-void test_equip_and_unequip() {
-    std::cout << "\n--- PRUEBA 3: EQUIPAR Y DESEQUIPAR ---\n";
-    Character* character = new Character("Equipper");
-
-    AMateria* ice = new Ice();
-    AMateria* cure = new Cure();
-
-    character->equip(ice);
-    character->equip(cure);
-    character->equip(ice); // Intento duplicado (debe fallar)
-
-    character->unequip(0);
-    character->unequip(1);
-
-    delete character; // Asegurar que no hay fugas de memoria.
-}
-
-// Prueba 4: Uso de Materias
-void test_materia_usage() {
-    std::cout << "\n--- PRUEBA 4: USO DE MATERIAS ---\n";
-    Character* character = new Character("User");
-    Character* target = new Character("Target");
-
-    AMateria* ice = new Ice();
-    AMateria* cure = new Cure();
-
-    character->equip(ice);
-    character->equip(cure);
-
-    character->use(0, *target); // Ice
-    character->use(1, *target); // Cure
-    character->use(2, *target); // Índice vacío (error esperado)
-
-    delete character;
-    delete target;
-}
-
-// Prueba 5: MateriaSource
-void test_materia_source() {
-    std::cout << "\n--- PRUEBA 5: MATERIASOURCE ---\n";
-    MateriaSource* src = new MateriaSource();
-
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Ice()); // Slot lleno (debe fallar)
-
-    AMateria* materia = src->createMateria("ice");
-    if (materia) {
-        std::cout << "Materia creada correctamente: " << materia->getType() << std::endl;
-        delete materia;
-    } else {
-        std::cout << "Fallo al crear materia 'ice'" << std::endl;
+int main()
+{
+    int option = -1;
+    while (option != 0)
+    {
+        displayMenu();
+        std::cin >> option;
+        switch (option)
+        {
+            case 1: runSubjectTest(); break;
+            case 2: runManualTest(); break;
+            case 3: runAllFullTest(); break;
+            case 4: runCharacterCopyTest(); break;
+            case 5: runMateriaSourceLimitTest(); break;
+            case 6: runDestructionOrderTest(); break;
+            case 7: runStressTest(); break;
+            case 0: 
+                std::cout << "🚪 Saliendo del programa...\n";
+                break;
+            default:
+                std::cout << "❌ Opción inválida, intente nuevamente.\n";
+        }
+        AMateria::clearAll(); // Limpieza global después de cada test
     }
 
-    delete src;
+    std::cout << "✅ Todos los recursos han sido liberados correctamente.\n";
+    return 0;
 }
 
-// Prueba 6: Escenarios límite
-void test_edge_cases() {
-    std::cout << "\n--- PRUEBA 6: ESCENARIOS LÍMITE ---\n";
-    Character* character = new Character("EdgeTester");
+// Implementaciones de las pruebas
 
-    character->equip(NULL); // No debe fallar
-
-    character->use(5, *character); // Índice fuera de rango
-    character->unequip(-1); // Índice inválido
-
-    delete character;
-}
-
-// Prueba 7: Flujo Completo
-void test_full_flow() {
-    std::cout << "\n--- PRUEBA 7: FLUJO COMPLETO ---\n";
+void runSubjectTest()
+{
+    std::cout << "\n🧪 Ejecutando Test del Subject...\n";
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    ICharacter* me = new Character("Player");
-    ICharacter* enemy = new Character("Enemy");
-
+    ICharacter* me = new Character("me");
     AMateria* tmp;
+
     tmp = src->createMateria("ice");
     me->equip(tmp);
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
-    me->use(0, *enemy);
-    me->use(1, *enemy);
+    ICharacter* bob = new Character("bob");
+    me->use(0, *bob);
+    me->use(1, *bob);
 
-    me->unequip(0);
-    me->unequip(1);
-
-    delete enemy;
+    delete bob;
     delete me;
     delete src;
 }
 
-// Función Principal
-int main() {
-    std::cout << "======= INICIO DE LAS PRUEBAS =======\n";
+void runManualTest()
+{
+    std::cout << "\n🛠️ Creación Manual de Materias y Characters...\n";
+    IMateriaSource* src = new MateriaSource();
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
 
-    test_creation_and_destruction();
-    test_deep_copy();
-    // test_equip_and_unequip();
-    // test_materia_usage();
-    // test_materia_source();
-    // test_edge_cases();
-    // test_full_flow();
+    ICharacter* hero = new Character("Hero");
+    AMateria* ice = src->createMateria("ice");
+    AMateria* cure = src->createMateria("cure");
 
-    std::cout << "\n======= TODAS LAS PRUEBAS COMPLETADAS =======\n";
-    return 0;
+    hero->equip(ice);
+    hero->equip(cure);
+
+    hero->use(0, *hero);
+    hero->unequip(0);
+
+    delete hero;
+    delete src;
+}
+
+void runAllFullTest()
+{
+    std::cout << "\n🧩 Llenando _all hasta el límite...\n";
+    try {
+        for (int i = 0; i < 101; i++) {
+            new Ice();
+        }
+        new Cure(); // Debería fallar
+    } catch (const std::exception& e) {
+        std::cout << "❌ Excepción capturada: " << e.what() << "\n";
+    }
+}
+
+void runCharacterCopyTest()
+{
+    std::cout << "\n🔄 Probando Copia y Asignación de Character...\n";
+    Character hero("Hero");
+    hero.equip(new Ice());
+    hero.equip(new Cure());
+
+    Character copy(hero); // Constructor de copia
+    Character assigned = hero; // Operador de asignación
+
+    hero.use(0, hero);
+    copy.use(1, copy);
+    assigned.use(0, assigned);
+}
+
+void runMateriaSourceLimitTest()
+{
+    std::cout << "\n⚔️ Probando Slots Llenos en MateriaSource...\n";
+    IMateriaSource* src = new MateriaSource();
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+    src->learnMateria(new Ice()); // Debería fallar
+
+    AMateria* tmp = src->createMateria("ice");
+    delete tmp;
+
+    delete src;
+}
+
+void runDestructionOrderTest()
+{
+    std::cout << "\n🧠 Probando Destrucción en Orden Inesperado...\n";
+    Character* hero = new Character("Hero");
+    Character* sidekick = new Character("Sidekick");
+
+    hero->equip(new Ice());
+    sidekick->equip(new Cure());
+    sidekick->unequip(0);
+
+    delete hero; // Destruir primero al personaje con materias
+    delete sidekick;
+}
+
+void runStressTest()
+{
+    std::cout << "\n💻 Ejecutando Stress Test...\n";
+    for (int i = 0; i < 4200; i++) {
+        Character* temp = new Character("Temp");
+        temp->equip(new Ice());
+        temp->equip(new Cure());
+        delete temp;
+    }
 }
