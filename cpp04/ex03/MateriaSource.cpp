@@ -52,7 +52,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
     {
         for (int i = 0; i < 4; i++)
         {
-            if (_materias && _materias[i])
+            if (_materias[i])
             {
                 delete _materias[i];
                 _materias[i] = 0;
@@ -62,7 +62,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
             {
                 // std::cout << "= Nada en _materias all " << i << std::endl;
             }
-            if (other._materias && other._materias[i])
+            if (other._materias[i])
             {
                 _materias[i] = other._materias[i]->clone();
                 // std::cout << "= Copiando _materias en " << i << std::endl;
@@ -88,7 +88,7 @@ void MateriaSource::learnMateria(AMateria* m)
     }
 
     delete m;
-    // std::cout << "No hay espacio para aprender más Materias." << std::endl;
+    std::cout << "No hay espacio para aprender más Materias." << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(const std::string& type)
@@ -101,6 +101,6 @@ AMateria* MateriaSource::createMateria(const std::string& type)
             return _materias[i]->clone();
         }
     }
-    // std::cout << "No se pudo clonar por falta de espacio o type no conocido" << std::endl;
+    std::cout << "No se pudo clonar, type no conocido" << std::endl;
     return 0;
 }

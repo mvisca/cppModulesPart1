@@ -18,7 +18,7 @@
 #include <iostream>
 #include <exception>
 
-// Prototipos de las pruebas
+
 void runSubjectTest();
 void runManualTest();
 void runAllFullTest();
@@ -29,17 +29,17 @@ void runStressTest();
 
 void displayMenu()
 {
-    std::cout << "\n====== 🛠️ MENU DE PRUEBAS 🛠️ ======\n";
-    std::cout << "1. 🧪 Test del Subject\n";
-    std::cout << "2. 🛠️ Creación Manual de Materias y Characters\n";
-    std::cout << "3. 🧩 Prueba de Llenado de _all\n";
-    std::cout << "4. 🔄 Copia y Asignación de Character\n";
-    std::cout << "5. ⚔️ Comportamiento de MateriaSource con Slots Llenos\n";
-    std::cout << "6. 🧠 Destrucción en Orden Inesperado\n";
-    std::cout << "7. 💻 Stress Test\n";
-    std::cout << "0. 🚪 Salir\n";
+    std::cout << "TESTS\n";
+    std::cout << "1. El test del Subject\n";
+    std::cout << "2. Creacion de Materias y Characters\n";
+    std::cout << "3. Llenar AMateria::_all\n";
+    std::cout << "4. Crea, copia y asigna Character\n";
+    std::cout << "5. Llenar MateriaSource\n";
+    std::cout << "6. Orden de destruccion\n";
+    std::cout << "7. 4200 instancias\n";
+    std::cout << "0. Salir\n";
     std::cout << "=====================================\n";
-    std::cout << "Seleccione una opción: ";
+    std::cout << "Elige un test: ";
 }
 
 int main()
@@ -59,23 +59,20 @@ int main()
             case 6: runDestructionOrderTest(); break;
             case 7: runStressTest(); break;
             case 0: 
-                std::cout << "🚪 Saliendo del programa...\n";
                 break;
             default:
-                std::cout << "❌ Opción inválida, intente nuevamente.\n";
+                std::cout << "Elige otra vez\n";
         }
-        AMateria::clearAll(); // Limpieza global después de cada test
+        AMateria::clearAll();
     }
 
-    std::cout << "✅ Todos los recursos han sido liberados correctamente.\n";
+    std::cout << "Saliendo...\n";
     return 0;
 }
 
-// Implementaciones de las pruebas
-
 void runSubjectTest()
 {
-    std::cout << "\n🧪 Ejecutando Test del Subject...\n";
+    std::cout << "\nEl test del Subject\n";
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -88,73 +85,73 @@ void runSubjectTest()
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
+    ICharacter* him = new Character("bob");
+    me->use(0, *him);
+    me->use(1, *him);
 
-    delete bob;
+    delete him;
     delete me;
     delete src;
 }
 
 void runManualTest()
 {
-    std::cout << "\n🛠️ Creación Manual de Materias y Characters...\n";
+    std::cout << "\nCrear Materias y Characters\n";
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    ICharacter* hero = new Character("Hero");
+    ICharacter* personaje = new Character("Personaje");
     AMateria* ice = src->createMateria("ice");
     AMateria* cure = src->createMateria("cure");
 
-    hero->equip(ice);
-    hero->equip(cure);
+    personaje->equip(ice);
+    personaje->equip(cure);
 
-    hero->use(0, *hero);
-    hero->unequip(0);
+    personaje->use(0, *personaje);
+    personaje->unequip(0);
 
-    delete hero;
+    delete personaje;
     delete src;
 }
 
 void runAllFullTest()
 {
-    std::cout << "\n🧩 Llenando _all hasta el límite...\n";
+    std::cout << "\nLlenar AMateria::_all\n";
     try {
         for (int i = 0; i < 101; i++) {
             new Ice();
         }
-        new Cure(); // Debería fallar
+        new Cure(); // Tiene que fallar
     } catch (const std::exception& e) {
-        std::cout << "❌ Excepción capturada: " << e.what() << "\n";
+        std::cout << "try-catch: " << e.what() << "\n";
     }
 }
 
 void runCharacterCopyTest()
 {
-    std::cout << "\n🔄 Probando Copia y Asignación de Character...\n";
-    Character hero("Hero");
-    hero.equip(new Ice());
-    hero.equip(new Cure());
+    std::cout << "\n Crea, copiar y asignar Character\n";
+    Character personaje("Personaje");
+    personaje.equip(new Ice());
+    personaje.equip(new Cure());
 
-    Character copy(hero); // Constructor de copia
-    Character assigned = hero; // Operador de asignación
+    Character copy(personaje);
+    Character assigned = personaje;
 
-    hero.use(0, hero);
+    personaje.use(0, personaje);
     copy.use(1, copy);
     assigned.use(0, assigned);
 }
 
 void runMateriaSourceLimitTest()
 {
-    std::cout << "\n⚔️ Probando Slots Llenos en MateriaSource...\n";
+    std::cout << "\n Llenar MateriaSource\n";
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
-    src->learnMateria(new Ice()); // Debería fallar
+    src->learnMateria(new Ice()); // Tiene que fallar
 
     AMateria* tmp = src->createMateria("ice");
     delete tmp;
@@ -164,22 +161,23 @@ void runMateriaSourceLimitTest()
 
 void runDestructionOrderTest()
 {
-    std::cout << "\n🧠 Probando Destrucción en Orden Inesperado...\n";
-    Character* hero = new Character("Hero");
-    Character* sidekick = new Character("Sidekick");
+    std::cout << "\n Orden de destruccion\n";
+    Character* personaje = new Character("personaje");
+    Character* rival = new Character("rival");
 
-    hero->equip(new Ice());
-    sidekick->equip(new Cure());
-    sidekick->unequip(0);
+    personaje->equip(new Ice());
+    rival->equip(new Cure());
+    rival->unequip(0); // Queda sin duenyo
 
-    delete hero; // Destruir primero al personaje con materias
-    delete sidekick;
+    delete rival;
+    delete personaje;
 }
 
 void runStressTest()
 {
-    std::cout << "\n💻 Ejecutando Stress Test...\n";
+    std::cout << "\n 4200 instancias\n";
     for (int i = 0; i < 4200; i++) {
+        std::cout << "Instancia " << i + 1 << std::endl;
         Character* temp = new Character("Temp");
         temp->equip(new Ice());
         temp->equip(new Cure());

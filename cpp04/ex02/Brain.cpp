@@ -49,15 +49,6 @@ Brain& Brain::operator=(const Brain& other)
     return *this;
 }
 
-void Brain::setIdea(int index, const std::string idea)
-{
-    if (_ideas)
-        _ideas[index] = idea;
-}
+void Brain::setIdea(int index, const std::string idea) {_ideas[index] = idea;}
 
-std::string Brain::getIdea(int index) const
-{
-    if (_ideas)
-        return _ideas[index];
-    return "";
-}
+std::string Brain::getIdea(int index) const {return _ideas[index];}
