@@ -8,20 +8,42 @@ class Fixed {
 
 	private:
 		int _fixedPointValue;
-		static const int _fractionalBits = 8;
+		static const int _fractionalBits;
 
 	public:
+		// Ex00
+
 		// Constructor por defecto
 		Fixed();
 
 		// Constructor de copia
 		Fixed(const Fixed& other);
 
-		// Constructor con parámetro
-		Fixed(float input);
-
 		// Operador de asignación por copia
 		Fixed& operator=(const Fixed& other);
+
+		// Destructor
+		~Fixed();
+
+		// Getter del valor crudo
+		int getRawBits(void) const;
+
+		// Setter del valor crudo
+		void setRawBits(const int raw);
+
+		// Ex01
+
+		// Constructor con parámetro
+		Fixed(const float input);
+		Fixed(const int input);
+
+		// Convertir a float
+		float toFloat(void) const;
+
+		// Convertir a int
+		int toInt(void) const;
+
+		// Ex02
 
 		// Operadores de comparación
 		bool operator<(const Fixed& other) const;
@@ -42,21 +64,6 @@ class Fixed {
 		Fixed& operator--();
 		Fixed operator++(int);
 		Fixed operator--(int);
-
-		// Destructor
-		~Fixed();
-
-		// Getter del valor crudo
-		int getRawBits(void) const;
-
-		// Setter del valor crudo
-		void setRawBits(int const raw);
-
-		// Convertir a float
-		float toFloat(void) const;
-
-		// Convertir a int
-		int toInt(void) const;
 
 		// Funciones miembro estáticas
 		static Fixed& min(Fixed& n1, Fixed& n2);

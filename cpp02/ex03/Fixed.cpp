@@ -2,6 +2,8 @@
 #include <iostream> 
 #include "Fixed.hpp"
 
+const int Fixed::_fractionalBits = 8;
+
 // Constructor por defecto
 Fixed::Fixed() : _fixedPointValue(0) {
 	// std::cout << "Default constructor called" << std::endl;
@@ -9,14 +11,20 @@ Fixed::Fixed() : _fixedPointValue(0) {
 
 // Constructor por copia
 Fixed::Fixed(const Fixed& other) {
-	// std::cout  << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
-// Constructor con parámetro
-Fixed::Fixed(float input) {
-	// std::cout << "Float constructor called" << std::endl;
+// Constructor con parámetro float
+Fixed::Fixed(const float input) {
+	// std::cout << "float constructor called" << std::endl;
 	this->_fixedPointValue = roundf(input * (1 << _fractionalBits));
+}
+
+// Constructor con parámetro int
+Fixed::Fixed(const int input) {
+	// std::cout << "int constructor called" << std::endl;
+	this->_fixedPointValue = input << _fractionalBits;
 }
 
 // Operador de asignación por copia
@@ -116,13 +124,11 @@ Fixed::~Fixed() {
 
 // Gettea el valor crudo del número de punto fijo
 int Fixed::getRawBits(void) const {
-	// std::cout << "getRawBits member function called" << std::endl;
 	return this->_fixedPointValue;
 }
 
 // Settea el valor crudo del número de punto fijo
 void Fixed::setRawBits(int const raw) {
-	// std::cout << "setRawBits member function called" << std::endl;
 	this->_fixedPointValue = raw;
 }
 
@@ -154,7 +160,9 @@ const Fixed& Fixed::max(const Fixed& n1, const Fixed& n2) {
 	return (n1 > n2) ? n1 : n2;
 }
 
-// Acceso a la clase std::ostream
+// Ex 01
+
+// Acceso friend a la clase std::ostream
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 	os << fixed.toFloat();
 	return os;

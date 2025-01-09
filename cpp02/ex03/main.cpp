@@ -1,25 +1,19 @@
 #include <iostream>
-#include <cmath>
+//#include <cmath>
 #include "Fixed.hpp"
 #include "Point.hpp"
 
-/*const int MATRIX_WIDTH = 17;
+/*
+const int MATRIX_WIDTH = 17;
 const int MATRIX_HEIGHT = 12;
 
 void initializeMatrix(char matrix[MATRIX_HEIGHT][MATRIX_WIDTH]);
 void drawLine(char matrix[MATRIX_HEIGHT][MATRIX_WIDTH], int x1, int y1, int x2, int y2, char fillChar);
 void drawTriangleInMatrix(char matrix[MATRIX_HEIGHT][MATRIX_WIDTH]);
-void printMatrix(char matrix[MATRIX_HEIGHT][MATRIX_WIDTH]);*/
+void printMatrix(char matrix[MATRIX_HEIGHT][MATRIX_WIDTH]);
+*/
 
 int main() {
-
-	/* Dibujar triángulo de test
-   char matrix[MATRIX_HEIGHT][MATRIX_WIDTH];
-	initializeMatrix(matrix);
-	drawTriangleInMatrix(matrix);
-	std::cout << std::endl;
-	printMatrix(matrix);
-	std::cout << std::endl; */
 
 	// Definición de los vértices del triángulo
 	Point a(0.0f, 0.0f);
@@ -31,6 +25,11 @@ int main() {
 	Point outsidePoint(15.0f, 5.0f);   // Punto fuera del triángulo
 	Point onEdgePoint(5.0f, 0.0f);     // Punto en el borde del triángulo
 	Point vertexPoint(0.0f, 0.0f);     // Punto en uno de los vértices
+
+	// Triangulo
+	std::cout << "a =  0 .  0" << std::endl;
+	std::cout << "b = 10 .  0" << std::endl;
+	std::cout << "c =  5 . 10" << std::endl;
 
 	// Pruebas para verificar si los puntos están dentro del triángulo
 	std::cout << "Prueba 1: Punto dentro del triángulo" << std::endl;
@@ -60,6 +59,16 @@ int main() {
 	} else {
 		std::cout << "El punto (0.0, 0.0) está fuera del triángulo." << std::endl;
 	}
+
+	/*
+	// Dibujar triángulo de test
+   char matrix[MATRIX_HEIGHT][MATRIX_WIDTH];
+	initializeMatrix(matrix);
+	drawTriangleInMatrix(matrix);
+	std::cout << std::endl;
+	printMatrix(matrix);
+	std::cout << std::endl; 
+	*/
 
 	return 0;
 }

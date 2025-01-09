@@ -8,33 +8,23 @@ class Fixed {
 
 	private:
 		int _fixedPointValue;
-		static const int _fractionalBits = 8;
+		static const int _fractionalBits;
 
 	public:
+		
+		// Ex00
+
 		// Constructor por defecto
 		Fixed();
 
 		// Constructor de copia
 		Fixed(const Fixed& other);
 
-		// Constructor con parámetro int
-		Fixed(int input);
-
-		// Constructor con parámetro float
-		Fixed(float input);
-
 		// Operador de asignación por copia
 		Fixed& operator=(const Fixed& other);
 
-
 		// Destructor
 		~Fixed();
-
-		// Convertir a float
-		float toFloat(void) const;
-
-		// Convertir a int
-		int toInt(void) const;
 
 		// Getter del valor crudo
 		int getRawBits(void) const;
@@ -42,9 +32,22 @@ class Fixed {
 		// Setter del valor crudo
 		void setRawBits(const int raw);
 
+		// Ex01
+
+		// Constructor con parámetro
+		Fixed(const float input);
+		Fixed(const int input);
+//		Fixed(const float input);
+//		Fixed(const int input);
+
+		// Convertir a float
+		float toFloat(void) const;
+
+		// Convertir a int
+		int toInt(void) const;
 };
 
-	// Operador de inserción
-	std::ostream& operator<<(std::ostream& outputStream, const Fixed& fixed);
+// Ex01
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
