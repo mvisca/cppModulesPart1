@@ -18,7 +18,7 @@ void		sl_game_end(t_game *g);
 void	sl_run_game(t_game *g)
 {
 	mlx_hook(g->win, 17, 0, (void *) sl_game_end, g);
-	mlx_hook(g->win, 2, 0, &sl_handle_arrows, g);
+	mlx_hook(g->win, 2, 1L << 0, &sl_handle_arrows, g);
 	mlx_loop(g->mlx);
 }
 
@@ -26,7 +26,10 @@ static int	sl_handle_arrows(int keysym, t_game *g)
 {
 	sl_find_pyr(g, &g->p_r, &g->p_c);
 	if (keysym == ARRU || keysym == W)
+	{
 		sl_move(-1, 0, g);
+		write(1, "UP\n", 3);
+	}
 	else if (keysym == ARRD || keysym == S)
 		sl_move(1, 0, g);
 	else if (keysym == ARRL || keysym == A)

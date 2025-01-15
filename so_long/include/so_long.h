@@ -23,7 +23,6 @@
 # include "sl_defines.h"
 # include "../libs/libft/include/libft.h"
 
-// Selecciona el header de minilib para MacOS o Linux
 # include "../libs/minilibx/mlx.h"
 
 // sl_init.c

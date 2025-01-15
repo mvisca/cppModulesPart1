@@ -43,3 +43,37 @@ static void	sl_congratulations(t_game *g)
 	ft_printf("Congratulations!\nGame complete in %d moves!", g->turns);
 	sl_game_end(g);
 }
+
+/*void sl_move(int r_move, int c_move, t_game *g) {
+    char dest = g->map->tiles[g->p_r + r_move][g->p_c + c_move];
+
+    if (dest == '1') // Pared, no hacer nada
+        return;
+
+    // Actualizar posición actual del jugador
+    if (g->map->tiles[g->p_r][g->p_c] == 'P')
+        g->map->tiles[g->p_r][g->p_c] = '0';
+    else if (g->map->tiles[g->p_r][g->p_c] == 'B')
+        g->map->tiles[g->p_r][g->p_c] = 'E';
+
+    // Actualizar destino según el contenido
+    if (dest == '0' || dest == 'C') {
+        g->map->tiles[g->p_r + r_move][g->p_c + c_move] = 'P';
+        if (dest == 'C') // Recolectar un coleccionable
+            g->map->coll--;
+    } else if (dest == 'E') {
+        if (g->map->coll == 0) {
+            sl_congratulations(g); // Fin del juego
+            return;
+        } else {
+            g->map->tiles[g->p_r + r_move][g->p_c + c_move] = 'B';
+        }
+    }
+
+    // Actualizar posición del jugador
+    g->p_r += r_move;
+    g->p_c += c_move;
+
+    ft_printf("Moves made: %d\n", ++(g->turns));
+    sl_map_show(g); // Redibujar mapa
+}*/

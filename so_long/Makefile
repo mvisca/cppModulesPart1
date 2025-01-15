@@ -56,11 +56,11 @@ MLX			:= $(MLXDIR)libmlx.a
 
 #---------- INGREDIENTS ---------------------#
 
-CC			:= cc -Wall -Wextra -Werror
+CC			:= cc -Wall -Wextra -Werror 
 
-DEBUG		:= -g -fsanitize=address
+# DEBUG		:= -g -fsanitize=address
 
-MLXFLAGS 	:= -L$(MLXDIR) -lmlx -I$(MLXDIR)include -framework OpenGl -framework AppKit
+MLXFLAGS 	:= -L$(MLXDIR) -lmlx_Linux -L/usr/lib -lX11 -lXext -lm -lz -I$(MLXDIR)
 
 LFTFLAGS	:= -L$(LFTDIR) -lft -I$(LFTDIR)include
 
